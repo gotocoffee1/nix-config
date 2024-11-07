@@ -80,6 +80,7 @@ in
     hyprland.enable = true;
     firefox.enable = true;
     zsh.enable = true;
+    direnv.enable = true;
   };
 
   # List services that you want to enable:

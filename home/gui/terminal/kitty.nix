@@ -11,5 +11,7 @@
     settings = {
       background_opacity = "0.7";
     };
+    extraConfig = 
+      "mouse_map middle release ungrabbed";
   };
 }

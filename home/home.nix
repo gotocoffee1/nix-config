@@ -8,6 +8,7 @@
     ./gui/window_manager/hypr/hyprland.nix
     ./gui/terminal/kitty.nix
     ./shell/zsh.nix
+    ./tools/direnv.nix
     ./vcs/git.nix
   ];
 }
