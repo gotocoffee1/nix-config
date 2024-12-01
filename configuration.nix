@@ -56,8 +56,14 @@ in
   home-manager.users.gotocoffee = {
     imports = [
       ./home/home.nix
-    ]; 
+    ];
   };
+  home-manager.backupFileExtension = "backup";
+  home-manager = {
+    useUserPackages = true;
+    useGlobalPkgs = true;
+  };
+
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
@@ -65,7 +71,8 @@ in
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    kitty   
+    kitty
+    home-manager
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -81,6 +88,7 @@ in
     firefox.enable = true;
     zsh.enable = true;
     direnv.enable = true;
+    ssh.startAgent = true;
   };
 
   # List services that you want to enable:
@@ -92,7 +100,7 @@ in
       enable = true;
       settings = rec {
         initial_session = {
-          command = "Hyprland";
+          command = "hyprland";
           user = "gotocoffee";
         };
         default_session = initial_session;
@@ -115,3 +123,4 @@ in
   system.stateVersion = "24.05"; # Did you read the comment?
 
 }
+

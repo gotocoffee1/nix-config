@@ -5,6 +5,7 @@
     ./editor/neovim.nix
     ./gui/app_launcher/fuzzel.nix
     ./gui/bar/waybar.nix
+    #./gui/window_manager/sway/sway.nix
     ./gui/window_manager/hypr/hyprland.nix
     ./gui/terminal/kitty.nix
     ./shell/zsh.nix
