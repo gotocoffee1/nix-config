@@ -1,6 +1,6 @@
 { config, pkgs, ... }:
 let
-  home-manager = builtins.fetchTarball "https://github.com/nix-community/home-manager/archive/release-24.05.tar.gz";
+  home-manager = builtins.fetchTarball "https://github.com/nix-community/home-manager/archive/release-24.11.tar.gz";
 in
 {
   imports = [ # Include the results of the hardware scan.
@@ -100,7 +100,7 @@ in
       enable = true;
       settings = rec {
         initial_session = {
-          command = "hyprland";
+          command = "Hyprland";
           user = "gotocoffee";
         };
         default_session = initial_session;

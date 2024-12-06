@@ -14,16 +14,30 @@
         };
       };
       bind = [
-        "$mod, T, exec, kitty"
-        "$mod, F, exec, firefox"
-        "$mod, C, killactive"
+        "$mod, Return, exec, kitty"
+        "$mod Shift, Q, killactive"
         "$mod, SUPER_L, exec, fuzzel"
+        "$mod, H, movefocus, l"
+        "$mod, J, movefocus, d"
+        "$mod, K, movefocus, u"
+        "$mod, L, movefocus, r"
+
+        "$mod Shift, H, swapwindow, l"
+        "$mod Shift, J, swapwindow, d"
+        "$mod Shift, K, swapwindow, u"
+        "$mod Shift, L, swapwindow, r"
+
+        "$mod, F, fullscreen"
+        "$mod Shift, Space, togglefloating"
       ];
       exec-once = [
         "waybar"
+        "wpaperd -d"
       ];
       misc = {
         middle_click_paste = false;
+        disable_hyprland_logo = true;
+        disable_splash_rendering = true;
       };
       general = {
         # Gaps and border
@@ -34,6 +48,10 @@
       };
       decoration = {
         rounding = 12;
+        blur = {
+          enabled = true;
+          size = 1;
+        };
       };
     };
   };

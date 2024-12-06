@@ -7,7 +7,7 @@
       name = "FiraCode Nerd Font";
       package = pkgs.fira-code-nerdfont;
     };
-    theme = "Earthsong";
+    themeFile = "gruvbox-dark";
     settings = {
       background_opacity = "0.7";
     };
