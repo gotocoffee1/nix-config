@@ -44,7 +44,7 @@ in
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users = {
-    defaultUserShell = pkgs.zsh;
+    defaultUserShell = pkgs.fish;
     users.gotocoffee = {
       isNormalUser = true;
       description = "gotocoffee";
@@ -86,7 +86,7 @@ in
   programs = {
     hyprland.enable = true;
     firefox.enable = true;
-    zsh.enable = true;
+    fish.enable = true;
     direnv.enable = true;
     ssh.startAgent = true;
   };
