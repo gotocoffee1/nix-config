@@ -4,9 +4,7 @@
   imports = [
     ./editor/neovim.nix
     ./gui/gui.nix
-    ./shell/fish.nix
-    ./shell/zellij.nix
-    #./shell/zsh.nix
+    ./shell/shell.nix
     ./tools/direnv.nix
     ./tools/btop.nix
     ./vcs/git.nix
