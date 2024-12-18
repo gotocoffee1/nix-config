@@ -1,0 +1,32 @@
+{pkgs, ...}:
+let
+  stylix = builtins.fetchTarball "https://github.com/danth/stylix/archive/release-24.11.tar.gz";
+in
+{
+  imports = [
+    (import stylix).homeManagerModules.stylix
+  ];
+  stylix = {
+    enable = true;
+    image = ./gui/wallpaper/minimal/simple-sharing-v0-27d3vwajcadd1.webp;
+    base16Scheme = "${pkgs.base16-schemes}/share/themes/kanagawa.yaml";
+    opacity = {
+      terminal = 0.7;
+    };
+    fonts = {
+      monospace = {
+        name = "FiraCode Nerd Font";
+        package = pkgs.fira-code-nerdfont;
+      };
+    };
+    cursor = {
+      name = "phinger-cursors-dark";
+      package = pkgs.phinger-cursors;
+      size = 16;
+    };
+    targets = {
+      neovim.enable = false;
+    };
+  };
+}
+

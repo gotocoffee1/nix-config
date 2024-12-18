@@ -4,9 +4,9 @@ let
 in
 {
   imports = [ # Include the results of the hardware scan.
-      /etc/nixos/hardware-configuration.nix
-      (import "${home-manager}/nixos")
-    ];
+    /etc/nixos/hardware-configuration.nix
+    (import "${home-manager}/nixos")
+  ];
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
@@ -55,7 +55,7 @@ in
 
   home-manager.users.gotocoffee = {
     imports = [
-      ./home/home.nix
+      ./home
     ];
   };
   home-manager.backupFileExtension = "backup";
