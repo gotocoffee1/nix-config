@@ -16,7 +16,7 @@
       bind = [
         "$mod, Return, exec, kitty"
         "$mod Shift, Q, killactive"
-        "$mod, SUPER_L, exec, fuzzel"
+        "$mod, SUPER_L, exec, pkill fuzzel || fuzzel"
         "$mod, H, movefocus, l"
         "$mod, J, movefocus, d"
         "$mod, K, movefocus, u"
