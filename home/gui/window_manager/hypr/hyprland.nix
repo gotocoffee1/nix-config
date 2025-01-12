@@ -1,7 +1,11 @@
-{pkgs, ...}:
+{pkgs, config, lib, ...}:
+with lib;
+let
+  cfg = config.home-config.gui;
+in
 {
   wayland.windowManager.hyprland = {
-    enable = true;
+    enable = cfg.enable;
     settings = {
       "$mod" = "Super";
       input = {
