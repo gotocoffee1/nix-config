@@ -1,4 +1,4 @@
-{...}:
+{ ... }:
 {
   home.stateVersion = "24.11";
   imports = [
@@ -11,7 +11,7 @@
     ./tools/btop.nix
     ./vcs/git.nix
   ];
-  home-config = {
+  homeFlavor = {
     gui = {
       enable = true;
     };

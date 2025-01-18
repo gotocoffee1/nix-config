@@ -5,10 +5,13 @@ in
 {
   imports = [
     # Include the results of the hardware scan.
+    ./features.nix
     /etc/nixos/hardware-configuration.nix
     (import "${home-manager}/nixos")
   ];
-
+  envFlavor = {
+    hardware.isVirtual = false;
+  };
   # Bootloader.
   boot.loader = {
     systemd-boot.enable = true;
@@ -24,18 +27,19 @@ in
   time.timeZone = "Europe/Berlin";
 
   # Select internationalisation properties.
-  i18n.defaultLocale = "en_US.UTF-8";
-
-  i18n.extraLocaleSettings = {
-    LC_ADDRESS = "de_DE.UTF-8";
-    LC_IDENTIFICATION = "de_DE.UTF-8";
-    LC_MEASUREMENT = "de_DE.UTF-8";
-    LC_MONETARY = "de_DE.UTF-8";
-    LC_NAME = "de_DE.UTF-8";
-    LC_NUMERIC = "de_DE.UTF-8";
-    LC_PAPER = "de_DE.UTF-8";
-    LC_TELEPHONE = "de_DE.UTF-8";
-    LC_TIME = "de_DE.UTF-8";
+  i18n = {
+    defaultLocale = "en_US.UTF-8";
+    extraLocaleSettings = {
+      LC_ADDRESS = "de_DE.UTF-8";
+      LC_IDENTIFICATION = "de_DE.UTF-8";
+      LC_MEASUREMENT = "de_DE.UTF-8";
+      LC_MONETARY = "de_DE.UTF-8";
+      LC_NAME = "de_DE.UTF-8";
+      LC_NUMERIC = "de_DE.UTF-8";
+      LC_PAPER = "de_DE.UTF-8";
+      LC_TELEPHONE = "de_DE.UTF-8";
+      LC_TIME = "de_DE.UTF-8";
+    };
   };
 
   # Configure keymap in X11
@@ -90,6 +94,7 @@ in
     hyprland.enable = true;
     firefox.enable = true;
     fish.enable = true;
+
     direnv.enable = true;
     ssh.startAgent = true;
   };

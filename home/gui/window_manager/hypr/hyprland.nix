@@ -1,9 +1,9 @@
-{pkgs, config, lib, ...}:
+{ pkgs, config, lib, osConfig, ... }:
 with lib;
 let
-  gui = config.home-config.gui;
+  gui = config.homeFlavor.gui;
   vnc = gui.vnc;
-  isVirtual = true;
+  isVirtual = osConfig.envFlavor.hardware.isVirtual;
 in
 {
   home.packages = lib.optional (gui.enable && vnc.enable) pkgs.wayvnc;
