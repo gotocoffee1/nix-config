@@ -3,18 +3,23 @@ let
   home-manager = builtins.fetchTarball "https://github.com/nix-community/home-manager/archive/release-24.11.tar.gz";
 in
 {
-  imports = [ # Include the results of the hardware scan.
+  imports = [
+    # Include the results of the hardware scan.
     /etc/nixos/hardware-configuration.nix
     (import "${home-manager}/nixos")
   ];
 
   # Bootloader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
+  boot.loader = {
+    systemd-boot.enable = true;
+    efi.canTouchEfiVariables = true;
+  };
 
-  networking.hostName = "nixos"; # Define your hostname.
-  networking.networkmanager.enable = true;
-
+  networking = {
+    hostName = "nixos"; # Define your hostname.
+    networkmanager.enable = true;
+    firewall.allowedTCPPorts = [ 5900 ];
+  };
   # Set your time zone.
   time.timeZone = "Europe/Berlin";
 
@@ -34,10 +39,10 @@ in
   };
 
   # Configure keymap in X11
-#  services.xserver = {
-#    layout = "de";
-#    xkbVariant = "";
-#  };
+  #  services.xserver = {
+  #    layout = "de";
+  #    xkbVariant = "";
+  #  };
 
   # Configure console keymap
   console.keyMap = "de";
@@ -49,21 +54,20 @@ in
       isNormalUser = true;
       description = "gotocoffee";
       extraGroups = [ "networkmanager" "wheel" ];
-      packages = with pkgs; [];
+      packages = with pkgs; [ ];
     };
   };
 
-  home-manager.users.gotocoffee = {
-    imports = [
-      ./home
-    ];
-  };
-  home-manager.backupFileExtension = "backup";
   home-manager = {
     useUserPackages = true;
     useGlobalPkgs = true;
+    backupFileExtension = "backup";
+    users.gotocoffee = {
+      imports = [
+        ./home
+      ];
+    };
   };
-
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
@@ -82,6 +86,7 @@ in
   # };
 
   programs = {
+    nix-ld.enable = true;
     hyprland.enable = true;
     firefox.enable = true;
     fish.enable = true;
@@ -105,7 +110,6 @@ in
       };
     };
   };
-  networking.firewall.allowedTCPPorts= [ 5900 ];
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
@@ -120,6 +124,5 @@ in
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "24.05"; # Did you read the comment?
-
 }
 
