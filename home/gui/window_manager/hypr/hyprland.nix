@@ -1,13 +1,17 @@
 {pkgs, config, lib, ...}:
 with lib;
 let
-  cfg = config.home-config.gui;
+  gui = config.home-config.gui;
+  vnc = gui.vnc;
+  isVirtual = true;
 in
 {
+  home.packages = lib.optional (gui.enable && vnc.enable) pkgs.wayvnc;
   wayland.windowManager.hyprland = {
-    enable = cfg.enable;
+    enable = gui.enable;
     settings = {
       "$mod" = "Super";
+      monitor = lib.optional isVirtual "Virtual-1, 1920x1080, 0x0, 1";
       input = {
         kb_layout = "de";
         numlock_by_default = true;
@@ -37,7 +41,7 @@ in
       exec-once = [
         "waybar"
         "wpaperd -d"
-      ];
+      ] ++ lib.optional vnc.enable "wayvnc 0.0.0.0";
       misc = {
         middle_click_paste = false;
         disable_hyprland_logo = true;

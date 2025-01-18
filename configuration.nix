@@ -71,8 +71,6 @@ in
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    kitty
-    home-manager
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -107,6 +105,7 @@ in
       };
     };
   };
+  networking.firewall.allowedTCPPorts= [ 5900 ];
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
