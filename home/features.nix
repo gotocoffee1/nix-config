@@ -1,7 +1,7 @@
 { lib, ... }:
 with lib;
 {
-  options.homeFlavor = {
+  options.homeFeatures = {
     gui = {
       enable = mkEnableOption "Enable GUI";
       vnc = {

@@ -11,9 +11,10 @@
     ./tools/btop.nix
     ./vcs/git.nix
   ];
-  homeFlavor = {
+  homeFeatures = {
     gui = {
       enable = true;
+      vnc = { enable = true; };
     };
   };
 }

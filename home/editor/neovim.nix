@@ -1,11 +1,6 @@
 {config, pkgs, ...}:
 let
-nvimConfig = pkgs.fetchFromGitHub {
-  owner = "gotocoffee1";
-  repo = "kickstart.nvim";
-  rev = "561bdef90f188d9f456cd2f6fce95ccb534f3bee";
-  sha256 = "q2pZzCUUcVdf3CDEzUiAsdLqXZmBE3GmtQiQ30Ye8uY=";
-};
+nvimConfig = builtins.fetchTarball https://github.com/gotocoffee1/kickstart.nvim/archive/7d0154565804452e39c39a1798c6cb71ee0b7bd4.zip;
 in
 {
   programs.neovim = {

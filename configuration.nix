@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ lib, config, pkgs, ... }:
 let
   home-manager = builtins.fetchTarball "https://github.com/nix-community/home-manager/archive/release-24.11.tar.gz";
 in
@@ -6,12 +6,10 @@ in
   imports = [
     # Include the results of the hardware scan.
     ./features.nix
+    ./flavor.nix
     /etc/nixos/hardware-configuration.nix
     (import "${home-manager}/nixos")
   ];
-  envFlavor = {
-    hardware.isVirtual = false;
-  };
   # Bootloader.
   boot.loader = {
     systemd-boot.enable = true;
@@ -59,6 +57,7 @@ in
       description = "gotocoffee";
       extraGroups = [ "networkmanager" "wheel" ];
       packages = with pkgs; [ ];
+      openssh.authorizedKeys.keyFiles = lib.optional config.envFeatures.ssh.enable [ ./home/keys/id_ed25519.pub ];
     };
   };
 
@@ -91,7 +90,7 @@ in
 
   programs = {
     nix-ld.enable = true;
-    hyprland.enable = true;
+    hyprland.enable = config.envFeatures.gui.enable;
     firefox.enable = true;
     fish.enable = true;
 
@@ -102,8 +101,14 @@ in
   # List services that you want to enable:
 
   # Enable the OpenSSH daemon.
-  # services.openssh.enable = true;
   services = {
+    openssh = {
+      enable = config.envFeatures.ssh.enable;
+      settings = {
+        PasswordAuthentication = false;
+        KbdInteractiveAuthentication = false;
+      };
+    };
     greetd = {
       enable = true;
       settings = rec {
