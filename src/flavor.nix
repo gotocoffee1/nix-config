@@ -1,6 +1,7 @@
 {
   envFeatures = {
-    gui.enable = true;
+    gui.enable = false;
+    ssh.enable = true;
     hardware.isVirtual = true;
   };
 }

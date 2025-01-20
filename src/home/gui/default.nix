@@ -1,4 +1,4 @@
-{...}:
+{ lib, ... }:
 {
   imports = [
     ./app_launcher/fuzzel.nix

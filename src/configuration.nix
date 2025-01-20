@@ -1,6 +1,7 @@
 { lib, config, pkgs, ... }:
 let
   home-manager = builtins.fetchTarball "https://github.com/nix-community/home-manager/archive/release-24.11.tar.gz";
+  features = config.envFeatures;
 in
 {
   imports = [
@@ -57,7 +58,7 @@ in
       description = "gotocoffee";
       extraGroups = [ "networkmanager" "wheel" ];
       packages = with pkgs; [ ];
-      openssh.authorizedKeys.keyFiles = lib.optional config.envFeatures.ssh.enable [ ./home/keys/id_ed25519.pub ];
+      openssh.authorizedKeys.keyFiles = lib.optional features.ssh.enable ./home/keys/id_ed25519.pub;
     };
   };
 
@@ -103,14 +104,14 @@ in
   # Enable the OpenSSH daemon.
   services = {
     openssh = {
-      enable = config.envFeatures.ssh.enable;
+      enable = features.ssh.enable;
       settings = {
         PasswordAuthentication = false;
         KbdInteractiveAuthentication = false;
       };
     };
     greetd = {
-      enable = true;
+      enable = features.gui.enable;
       settings = rec {
         initial_session = {
           command = "Hyprland";

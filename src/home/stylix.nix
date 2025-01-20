@@ -1,4 +1,4 @@
-{pkgs, ...}:
+{ pkgs, ... }:
 let
   stylix = builtins.fetchTarball "https://github.com/danth/stylix/archive/release-24.11.tar.gz";
 in
