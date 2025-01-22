@@ -1,7 +1,10 @@
-{...}:
+{ config, ... }:
+let
+  gui = config.homeFeatures.gui;
+in
 {
   programs.waybar = {
-    enable = true;
+    enable = gui.enable;
     #style = (builtins.readFile ./style.css);
     settings = {
       mainBar = {
@@ -9,7 +12,7 @@
         position = "left";
         spacing = 0;
         width = 36;
-         fixed-center = false;
+        fixed-center = false;
         modules-left = [
           "idle_inhibitor"
           "group/privacygroup"
@@ -35,7 +38,7 @@
         ];
         backlight = {
           format = "{icon}";
-          format-icons = ["󰛩" "󱩎" "󱩏" "󱩐" "󱩑" "󱩒" "󱩓" "󱩔" "󱩕" "󱩖" "󰛨"];
+          format-icons = [ "󰛩" "󱩎" "󱩏" "󱩐" "󱩑" "󱩒" "󱩓" "󱩔" "󱩕" "󱩖" "󰛨" ];
           tooltip = false;
         };
         battery = {
@@ -48,7 +51,7 @@
           format = "{capacity}\n{icon}";
           format-charging = "{capacity}\n󰂄";
           format-full = "{capacity}\n󰂄";
-          format-icons = ["󰂎" "󰁺" "󰁻" "󰁼" "󰁽" "󰁾" "󰁿" "󰂀" "󰂁" "󰂂" "󰁹"];
+          format-icons = [ "󰂎" "󰁺" "󰁻" "󰁼" "󰁽" "󰁾" "󰁿" "󰂀" "󰂁" "󰂂" "󰁹" ];
           tooltip = true;
           tooltip-format = "{timeTo}\nPower: {power} Watt";
         };
@@ -120,7 +123,7 @@
           thermal-zone = 5;
           critical-threshold = 80;
           format = "{temperatureC}\n{icon}";
-          format-icons = ["" "" "" "" ""];
+          format-icons = [ "" "" "" "" "" ];
           interval = 10;
           tooltip = false;
           on-click = "kitty --title 'Floating Kitty btop' --detach btop";

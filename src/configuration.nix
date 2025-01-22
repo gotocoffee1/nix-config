@@ -7,7 +7,7 @@ in
   imports = [
     # Include the results of the hardware scan.
     ./features.nix
-    ./flavor.nix
+    ./flavors/headless.nix
     /etc/nixos/hardware-configuration.nix
     (import "${home-manager}/nixos")
   ];
@@ -91,12 +91,13 @@ in
 
   programs = {
     nix-ld.enable = true;
-    hyprland.enable = config.envFeatures.gui.enable;
-    firefox.enable = true;
+    hyprland.enable = features.gui.enable;
+    firefox.enable = features.gui.enable;
     fish.enable = true;
 
     direnv.enable = true;
     ssh.startAgent = true;
+    dconf.enable = true; # https://github.com/danth/stylix/issues/139
   };
 
   # List services that you want to enable:

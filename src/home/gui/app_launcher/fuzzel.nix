@@ -1,7 +1,10 @@
-{...}:
+{ config, ... }:
+let
+  gui = config.homeFeatures.gui;
+in
 {
   programs.fuzzel = {
-    enable = true;
+    enable = gui.enable;
     settings = {
       main = {
         prompt = "\"󱞩 \"";

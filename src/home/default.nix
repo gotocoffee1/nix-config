@@ -4,9 +4,9 @@
   imports = [
     ./features.nix
     ./editor/neovim.nix
-    #./gui
+    ./gui
     ./shell
-    #./stylix.nix
+    ./stylix.nix
     ./tools/direnv.nix
     ./tools/btop.nix
     ./vcs/git.nix

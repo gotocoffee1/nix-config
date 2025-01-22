@@ -1,7 +1,10 @@
-{pkgs, ...}:
+{ config, ... }:
+let
+  gui = config.homeFeatures.gui;
+in
 {
   programs.wpaperd = {
-    enable = true;
+    enable = gui.enable;
     settings = {
       default = {
         path = ./. + "/minimal";
