@@ -7,7 +7,8 @@ in
   imports = [
     # Include the results of the hardware scan.
     ./features.nix
-    ./flavors/headless.nix
+    # ./flavors/headless.nix
+    ./flavors/gui.nix
     /etc/nixos/hardware-configuration.nix
     (import "${home-manager}/nixos")
   ];
