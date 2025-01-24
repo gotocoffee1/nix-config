@@ -73,6 +73,7 @@ style = "fg:black bg:green"
 format = "[ $path ]($style)"
 truncation_length = 3
 truncation_symbol = "…/"
+truncate_to_repo = false
 read_only = " 󰌾"
 
 [directory.substitutions]

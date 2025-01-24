@@ -3,14 +3,11 @@
   programs.zellij = {
     enable = true;
     enableFishIntegration = true;
-    settings = {
-      ui = {
-        pane_frames = {
-          rounded_corners = true;
-          hide_session_name = true;
-        };
-      };
-    };
+  };
+  #https://github.com/NixOS/nixpkgs/issues/198655
+  xdg.configFile."zellij" = {
+    source = ./zellij;
+    recursive = true;
   };
 }
 
