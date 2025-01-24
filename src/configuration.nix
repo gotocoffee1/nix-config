@@ -8,10 +8,22 @@ in
     # Include the results of the hardware scan.
     ./features.nix
     # ./flavors/headless.nix
-    ./flavors/gui.nix
+    #./flavors/gui.nix
     /etc/nixos/hardware-configuration.nix
     (import "${home-manager}/nixos")
   ];
+  specialisation = {
+    headless.configuration = {
+      imports = [
+        ./flavors/headless.nix
+      ];
+    };
+    desktop.configuration = {
+      imports = [
+        ./flavors/gui.nix
+      ];
+    };
+  };
   # Bootloader.
   boot.loader = {
     systemd-boot.enable = true;
