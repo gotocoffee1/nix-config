@@ -135,7 +135,5 @@ ui {
     }
 }
 
-plugins {
-    compact-bar location="zellij:compact-bar"
-}
+default_layout "compact"
 
