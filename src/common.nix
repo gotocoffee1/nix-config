@@ -7,17 +7,13 @@ in
   imports = [
     ./features.nix
     /etc/nixos/hardware-configuration.nix
+    ./flavors/desktop.nix
     (import "${home-manager}/nixos")
   ];
   specialisation = {
     headless.configuration = {
       imports = [
         ./flavors/headless.nix
-      ];
-    };
-    desktop.configuration = {
-      imports = [
-        ./flavors/desktop.nix
       ];
     };
   };
@@ -68,7 +64,7 @@ in
       description = "gotocoffee";
       extraGroups = [ "networkmanager" "wheel" ];
       packages = with pkgs; [ ];
-      openssh.authorizedKeys.keyFiles = lib.optional features.ssh.enable ./home/keys/id_ed25519.pub;
+      openssh.authorizedKeys.keyFiles = lib.optional features.ssh.enable ./home/gotocoffee/keys/id_ed25519.pub;
     };
   };
 
@@ -78,7 +74,7 @@ in
     backupFileExtension = "backup";
     users.gotocoffee = {
       imports = [
-        ./home
+        ./home/gotocoffee
       ];
     };
   };

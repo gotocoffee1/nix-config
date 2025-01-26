@@ -3,6 +3,6 @@
     hardware.isVirtual = true;
   };
   imports = [
-    ../../configuration.nix
+    ../../common.nix
   ];
 }
