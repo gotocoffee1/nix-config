@@ -6,7 +6,7 @@
     ./editor/neovim.nix
     ./gui
     ./shell
-    ./stylix.nix
+    ./style
     ./tools/direnv.nix
     ./tools/btop.nix
     ./vcs/git.nix

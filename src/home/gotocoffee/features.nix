@@ -1,14 +1,15 @@
 { lib, osConfig, ... }:
 with lib;
 let
-  envFeatures = osConfig.envFeatures;
+  hasEnv = osConfig ? envFeatures;
+  env = osConfig.envFeatures;
 in
 {
   options.homeFeatures = {
     gui = {
-      enable = mkEnableOption "Enable GUI" // { default = envFeatures.gui.enable; };
+      enable = mkEnableOption "Enable GUI" // optionalAttrs hasEnv { default = env.gui.enable; };
       vnc = {
-        enable = mkEnableOption "Enable VNC" // { default = envFeatures.hardware.isVirtual; };
+        enable = mkEnableOption "Enable VNC" // optionalAttrs hasEnv { default = env.hardware.isVirtual; };
       };
     };
   };

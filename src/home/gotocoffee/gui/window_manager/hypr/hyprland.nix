@@ -3,7 +3,6 @@ with lib;
 let
   gui = config.homeFeatures.gui;
   vnc = gui.vnc;
-  isVirtual = osConfig.envFeatures.hardware.isVirtual;
 in
 {
   home.packages = lib.optional (gui.enable && vnc.enable) pkgs.wayvnc;
@@ -11,7 +10,7 @@ in
     enable = gui.enable;
     settings = {
       "$mod" = "Super";
-      monitor = lib.optional isVirtual "Virtual-1, 1920x1080, 0x0, 1";
+      monitor = [ "Virtual-1, 1920x1080, 0x0, 1" ];
       input = {
         kb_layout = "de";
         numlock_by_default = true;

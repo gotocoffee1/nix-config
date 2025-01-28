@@ -9,7 +9,7 @@ in
   stylix = {
     enable = true;
     polarity = "dark";
-    image = ./gui/wallpaper/minimal/simple-sharing-v0-27d3vwajcadd1.webp;
+    image = ../gui/wallpaper/minimal/simple-sharing-v0-27d3vwajcadd1.webp;
     base16Scheme = "${pkgs.base16-schemes}/share/themes/kanagawa.yaml";
     iconTheme = {
       enable = true;
