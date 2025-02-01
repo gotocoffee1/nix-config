@@ -7,8 +7,7 @@
     ./gui
     ./shell
     ./style
-    ./tools/direnv.nix
-    ./tools/btop.nix
+    ./tools
     ./vcs/git.nix
   ];
 }
