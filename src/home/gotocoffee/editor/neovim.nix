@@ -18,5 +18,5 @@ in
       gcc
     ];
   };
-  home.file."${config.xdg.configHome}/nvim".source = config.lib.file.mkOutOfStoreSymlink nvimConfig;
+  xdg.configFile."nvim".source = config.lib.file.mkOutOfStoreSymlink (if builtins.pathExists (./nvim) then ./nvim else nvimConfig);
 }
