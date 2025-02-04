@@ -2,6 +2,6 @@
 
 pkgs.mkShell
 {
-  packages = with pkgs; [ nixpkgs-fmt ];
+  packages = with pkgs; [ nixfmt-rfc-style ];
 }
 
