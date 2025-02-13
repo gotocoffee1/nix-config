@@ -19,7 +19,10 @@ in
         unzip
         gcc
       ]
-      ++ [ nixfmt-rfc-style ];
+      ++ [
+        nixfmt-rfc-style
+        prettierd
+      ];
   };
   xdg.configFile."nvim".source = config.lib.file.mkOutOfStoreSymlink (
     if builtins.pathExists (./nvim) then ./nvim else nvimConfig
