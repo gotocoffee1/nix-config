@@ -1,4 +1,10 @@
-{ pkgs, config, lib, osConfig, ... }:
+{
+  pkgs,
+  config,
+  lib,
+  osConfig,
+  ...
+}:
 with lib;
 let
   gui = config.homeFeatures.gui;
@@ -40,7 +46,7 @@ in
       exec-once = [
         "waybar"
         "wpaperd -d"
-      ] ++ lib.optional vnc.enable "wayvnc 0.0.0.0";
+      ] ++ lib.optional vnc.enable "wayvnc 127.0.0.1";
       misc = {
         middle_click_paste = false;
         disable_hyprland_logo = true;
@@ -63,4 +69,3 @@ in
     };
   };
 }
-

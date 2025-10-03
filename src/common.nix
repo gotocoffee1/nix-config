@@ -1,4 +1,9 @@
-{ lib, config, pkgs, ... }:
+{
+  lib,
+  config,
+  pkgs,
+  ...
+}:
 let
   home-manager = builtins.fetchTarball "https://github.com/nix-community/home-manager/archive/release-24.11.tar.gz";
   features = config.envFeatures;
@@ -26,7 +31,7 @@ in
   networking = {
     hostName = "nixos"; # Define your hostname.
     networkmanager.enable = true;
-    firewall.allowedTCPPorts = [ 5900 ];
+    firewall.allowedTCPPorts = [ ];
   };
   # Set your time zone.
   time.timeZone = "Europe/Berlin";
@@ -62,7 +67,10 @@ in
     users.gotocoffee = {
       isNormalUser = true;
       description = "gotocoffee";
-      extraGroups = [ "networkmanager" "wheel" ];
+      extraGroups = [
+        "networkmanager"
+        "wheel"
+      ];
       packages = with pkgs; [ ];
       openssh.authorizedKeys.keyFiles = lib.optional features.ssh.enable ./home/gotocoffee/keys/id_ed25519.pub;
     };
@@ -143,4 +151,3 @@ in
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "24.05"; # Did you read the comment?
 }
-
