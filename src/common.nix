@@ -5,7 +5,8 @@
   ...
 }:
 let
-  home-manager = builtins.fetchTarball "https://github.com/nix-community/home-manager/archive/release-24.11.tar.gz";
+  channel = "25.05";
+  home-manager = builtins.fetchTarball "https://github.com/nix-community/home-manager/archive/release-${channel}.tar.gz";
   features = config.envFeatures;
 in
 {
@@ -136,12 +137,6 @@ in
       };
     };
   };
-
-  # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
-  # Or disable the firewall altogether.
-  # networking.firewall.enable = false;
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

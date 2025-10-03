@@ -1,28 +1,40 @@
 { pkgs, ... }:
 let
-  stylix = builtins.fetchTarball "https://github.com/danth/stylix/archive/release-24.11.tar.gz";
+  channel = "25.05";
+  stylix = builtins.fetchTarball "https://github.com/danth/stylix/archive/release-${channel}.tar.gz";
 in
 {
   imports = [
-    (import stylix).homeManagerModules.stylix
+    (import stylix).homeModules.stylix
   ];
   stylix = {
     enable = true;
     polarity = "dark";
-    image = ../gui/wallpaper/minimal/simple-sharing-v0-27d3vwajcadd1.webp;
-    base16Scheme = "${pkgs.base16-schemes}/share/themes/kanagawa.yaml";
+    #image = ../gui/wallpaper/minimal/simple-sharing-v0-27d3vwajcadd1.webp;
+    base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-dark.yaml";
     iconTheme = {
       enable = true;
-      package = pkgs.kanagawa-icon-theme;
-      dark = "Kanagawa";
+      package = pkgs.gruvbox-plus-icons;
+      light = "Gruvbox-Plus-Light";
+      dark = "Gruvbox-Plus-Dark";
     };
     fonts = {
       monospace = {
         name = "FiraCode Nerd Font";
-        package = pkgs.fira-code-nerdfont;
+        package = pkgs.nerd-fonts.fira-code;
       };
-      #sansSerif
-      #serif
+      serif = {
+        package = pkgs.dejavu_fonts;
+        name = "DejaVu Serif";
+      };
+      sansSerif = {
+        package = pkgs.dejavu_fonts;
+        name = "DejaVu Sans";
+      };
+      emoji = {
+        package = pkgs.noto-fonts-emoji;
+        name = "Noto Color Emoji";
+      };
       sizes = {
         popups = 12;
         desktop = 12;
@@ -40,7 +52,7 @@ in
     };
     targets = {
       neovim.enable = false;
+      starship.enable = false;
     };
   };
 }
-

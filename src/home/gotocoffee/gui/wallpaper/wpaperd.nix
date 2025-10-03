@@ -3,7 +3,7 @@ let
   gui = config.homeFeatures.gui;
 in
 {
-  programs.wpaperd = {
+  services.wpaperd = {
     enable = gui.enable;
     settings = {
       default = {

@@ -2,7 +2,6 @@
   pkgs,
   config,
   lib,
-  osConfig,
   ...
 }:
 with lib;
@@ -29,7 +28,7 @@ in
       bind = [
         "$mod, Return, exec, kitty"
         "$mod Shift, Q, killactive"
-        "$mod, SUPER_L, exec, pkill fuzzel || fuzzel"
+        "$mod, D, exec, pkill fuzzel || fuzzel"
         "$mod, H, movefocus, l"
         "$mod, J, movefocus, d"
         "$mod, K, movefocus, u"
@@ -46,7 +45,8 @@ in
       exec-once = [
         "waybar"
         "wpaperd -d"
-      ] ++ lib.optional vnc.enable "wayvnc 127.0.0.1";
+      ]
+      ++ lib.optional vnc.enable "wayvnc 127.0.0.1";
       misc = {
         middle_click_paste = false;
         disable_hyprland_logo = true;

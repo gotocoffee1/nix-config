@@ -1,6 +1,6 @@
 { config, pkgs, ... }:
 let
-  nvimConfig = builtins.fetchTarball "https://github.com/gotocoffee1/kickstart.nvim/archive/7d0154565804452e39c39a1798c6cb71ee0b7bd4.zip";
+  nvimConfig = builtins.fetchTarball "https://github.com/gotocoffee1/kickstart.nvim/archive/85c45df7cbb122364f73dfe46d46174620789337.zip";
 in
 {
   programs.neovim = {
