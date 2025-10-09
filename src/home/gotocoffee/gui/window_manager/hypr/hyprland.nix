@@ -10,7 +10,12 @@ let
   vnc = gui.vnc;
 in
 {
-  home.packages = lib.optional (gui.enable && vnc.enable) pkgs.wayvnc;
+  home.packages =
+    with pkgs;
+    [
+      mate.caja
+    ]
+    ++ lib.optional (gui.enable && vnc.enable) pkgs.wayvnc;
   wayland.windowManager.hyprland = {
     enable = gui.enable;
     settings = {

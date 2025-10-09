@@ -15,7 +15,8 @@ in
     /etc/nixos/hardware-configuration.nix
     ./flavors/desktop.nix
     (import "${home-manager}/nixos")
-  ];
+  ]
+  ++ lib.optional (builtins.pathExists ./extra/default.nix) ./extra;
   specialisation = {
     headless.configuration = {
       imports = [
