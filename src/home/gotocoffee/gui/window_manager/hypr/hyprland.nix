@@ -12,10 +12,12 @@ in
 {
   home.packages =
     with pkgs;
-    [
+    [ ]
+    ++ lib.optional (gui.enable && vnc.enable) wayvnc
+    ++ lib.optionals gui.enable [
       mate.caja
-    ]
-    ++ lib.optional (gui.enable && vnc.enable) pkgs.wayvnc;
+    ];
+
   wayland.windowManager.hyprland = {
     enable = gui.enable;
     settings = {
@@ -48,8 +50,7 @@ in
         "$mod Shift, Space, togglefloating"
       ];
       exec-once = [
-        "waybar"
-        "wpaperd -d"
+        "caelestia-shell -d"
       ]
       ++ lib.optional vnc.enable "wayvnc 127.0.0.1";
       misc = {

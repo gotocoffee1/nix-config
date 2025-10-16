@@ -5,8 +5,6 @@
   ...
 }:
 let
-  channel = "25.05";
-  home-manager = builtins.fetchTarball "https://github.com/nix-community/home-manager/archive/release-${channel}.tar.gz";
   features = config.envFeatures;
 in
 {
@@ -14,7 +12,6 @@ in
     ./features.nix
     /etc/nixos/hardware-configuration.nix
     ./flavors/desktop.nix
-    (import "${home-manager}/nixos")
   ]
   ++ lib.optional (builtins.pathExists ./extra/default.nix) ./extra;
   specialisation = {
@@ -91,7 +88,10 @@ in
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
-
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [

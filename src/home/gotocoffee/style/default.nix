@@ -1,12 +1,5 @@
 { pkgs, ... }:
-let
-  channel = "25.05";
-  stylix = builtins.fetchTarball "https://github.com/danth/stylix/archive/release-${channel}.tar.gz";
-in
 {
-  imports = [
-    (import stylix).homeModules.stylix
-  ];
   stylix = {
     enable = true;
     polarity = "dark";

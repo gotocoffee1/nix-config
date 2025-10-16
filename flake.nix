@@ -1,0 +1,43 @@
+{
+  description = "NixOS flake";
+
+  inputs = {
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05";
+    home-manager = {
+      url = "github:nix-community/home-manager/release-25.05";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    stylix = {
+      url = "github:nix-community/stylix/release-25.05";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    caelestia = {
+      url = "github:caelestia-dots/shell";
+      #inputs.nixpkgs.follows = "nixpkgs";
+    };
+  };
+
+  outputs =
+    {
+      self,
+      nixpkgs,
+      home-manager,
+      stylix,
+      caelestia,
+      ...
+    }@inputs:
+    {
+      nixosConfigurations.vm = nixpkgs.lib.nixosSystem {
+        modules = [
+          home-manager.nixosModules.home-manager
+          {
+            home-manager.sharedModules = [
+              stylix.homeModules.stylix
+              caelestia.homeManagerModules.default
+            ];
+          }
+          ./src/hosts/vm/configuration.nix
+        ];
+      };
+    };
+}
