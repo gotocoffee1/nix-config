@@ -1,7 +1,7 @@
 { lib, ... }:
 {
   imports = [
-    ./app_launcher/fuzzel.nix
+    #./app_launcher/fuzzel.nix
     #./bar/waybar.nix
     #./cursor/cursor.nix
     ./caelestia

@@ -11,7 +11,28 @@ in
       vnc = {
         enable = mkEnableOption "Enable VNC" // optionalAttrs hasEnv { default = env.hardware.isVirtual; };
       };
+      rounding = mkOption {
+        type = types.ints.unsigned;
+        default = 12;
+      };
+      border = mkOption {
+        type = types.ints.unsigned;
+        default = 2;
+      };
+      fonts = {
+        sans = {
+          name = mkOption {
+            type = types.str;
+            default = "DejaVu Sans";
+          };
+        };
+        mono = {
+          name = mkOption {
+            type = types.str;
+            default = "FiraCode Nerd Font";
+          };
+        };
+      };
     };
   };
 }
-

@@ -11,8 +11,22 @@ in
       environment = [ ];
     };
     settings = {
+      appearance = {
+        font = {
+          family = {
+            clock = gui.fonts.sans.name;
+            mono = gui.fonts.mono.name;
+            sans = gui.fonts.sans.name;
+          };
+        };
+        transparency = {
+          enabled = true;
+        };
+      };
       paths = {
         wallpaperDir = ../wallpaper/minimal;
+        sessionGif = ./session.gif;
+        mediaGif = ./media.gif;
       };
       general = {
         apps = {
@@ -25,9 +39,9 @@ in
           enabled = true;
         };
       };
-      launcher = {
-
-        showOnHover = true;
+      border = {
+        rounding = gui.rounding;
+        thickness = gui.border;
       };
       bar.status = {
         showBattery = false;
@@ -39,8 +53,8 @@ in
         theme = {
           enableGtk = false;
           enableTerm = false;
-          enableFuzzel = false;
-          enableQt = false;
+          enableFuzzel = true;
+          enableQt = true;
         };
       };
     };
