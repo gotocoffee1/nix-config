@@ -27,17 +27,25 @@
       ...
     }@inputs:
     {
-      nixosConfigurations.vm = nixpkgs.lib.nixosSystem {
-        modules = [
-          home-manager.nixosModules.home-manager
-          {
-            home-manager.sharedModules = [
-              stylix.homeModules.stylix
-              caelestia.homeManagerModules.default
-            ];
-          }
-          ./src/hosts/vm/configuration.nix
-        ];
-      };
+      nixosConfigurations =
+        let
+          modules = [
+            home-manager.nixosModules.home-manager
+            {
+              home-manager.sharedModules = [
+                stylix.homeModules.stylix
+                caelestia.homeManagerModules.default
+              ];
+            }
+          ];
+        in
+        {
+          vm = nixpkgs.lib.nixosSystem {
+            modules = modules ++ [ ./src/hosts/vm/configuration.nix ];
+          };
+          laptop = nixpkgs.lib.nixosSystem {
+            modules = modules ++ [ ./src/hosts/laptop/configuration.nix ];
+          };
+        };
     };
 }
