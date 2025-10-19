@@ -15,7 +15,7 @@ in
     [ ]
     ++ lib.optional (gui.enable && vnc.enable) wayvnc
     ++ lib.optionals gui.enable [
-      mate.caja
+      kdePackages.dolphin
     ];
 
   wayland.windowManager.hyprland = {
@@ -107,6 +107,9 @@ in
         "caelestia-shell -d"
       ]
       ++ lib.optional vnc.enable "wayvnc 127.0.0.1";
+      env = [
+        "GTK_USE_PORTAL,1"
+      ];
       misc = {
         middle_click_paste = false;
         disable_hyprland_logo = true;
@@ -131,14 +134,14 @@ in
   xdg.portal = {
     enable = true;
     extraPortals = [
-      pkgs.xdg-desktop-portal-xapp
+      pkgs.kdePackages.xdg-desktop-portal-kde
     ];
     config.hyprland = {
       default = [
         "hyprland"
         "gtk"
       ];
-      "org.freedesktop.impl.portal.FileChooser" = "xapp";
+      "org.freedesktop.impl.portal.FileChooser" = "kde";
     };
   };
 }

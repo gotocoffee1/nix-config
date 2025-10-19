@@ -46,6 +46,7 @@
     targets = {
       neovim.enable = false;
       starship.enable = false;
+      qt.enable = true;
     };
   };
 }

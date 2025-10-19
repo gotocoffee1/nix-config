@@ -31,7 +31,7 @@ in
       general = {
         apps = {
           terminal = [ "kitty" ];
-          explorer = [ "caja" ];
+          explorer = [ "dolphin" ];
         };
       };
       background = {
@@ -54,7 +54,7 @@ in
           enableGtk = false;
           enableTerm = false;
           enableFuzzel = true;
-          enableQt = true;
+          enableQt = false;
         };
       };
     };
