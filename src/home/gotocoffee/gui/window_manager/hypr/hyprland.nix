@@ -35,7 +35,7 @@ in
       exec = [ "hyprctl dispatch submap global" ];
       submap = "global";
       bind = [
-        "$mod, Return, exec, kitty"
+        "$mod, Return, exec, ${gui.terminal}"
         "$mod Shift, Q, killactive"
         #"$mod, D, exec, pkill fuzzel || fuzzel"
         "$mod, H, movefocus, l"
@@ -109,6 +109,8 @@ in
       ++ lib.optional vnc.enable "wayvnc 127.0.0.1";
       env = [
         "GTK_USE_PORTAL,1"
+        "QT_QPA_PLATFORMTHEME,qt5ct"
+        "QT_STYLE_OVERRIDE,kvantum"
       ];
       misc = {
         middle_click_paste = false;
@@ -131,6 +133,10 @@ in
       };
     };
   };
+  xdg.configFile."kdeglobals".text = ''
+    [General]
+    TerminalApplication=${gui.terminal}
+  '';
   xdg.portal = {
     enable = true;
     extraPortals = [

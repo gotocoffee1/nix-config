@@ -30,7 +30,7 @@ in
       };
       general = {
         apps = {
-          terminal = [ "kitty" ];
+          terminal = [ "${gui.terminal}" ];
           explorer = [ "dolphin" ];
         };
       };

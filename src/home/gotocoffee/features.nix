@@ -15,6 +15,10 @@ in
         type = types.ints.unsigned;
         default = 12;
       };
+      terminal = mkOption {
+        type = types.str;
+        default = "kitty";
+      };
       border = mkOption {
         type = types.ints.unsigned;
         default = 2;
