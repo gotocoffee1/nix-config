@@ -12,7 +12,6 @@ in
     ./features.nix
     /etc/nixos/hardware-configuration.nix
     ./flavors/desktop.nix
-    ./extra/default.nix
   ]
   ++ lib.optional (builtins.pathExists ./extra/default.nix) ./extra;
   specialisation = {
