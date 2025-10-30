@@ -108,7 +108,6 @@ in
   programs = {
     nix-ld.enable = true;
     hyprland.enable = features.gui.enable;
-    firefox.enable = features.gui.enable;
     fish.enable = true;
 
     direnv.enable = true;
