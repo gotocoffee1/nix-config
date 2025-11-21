@@ -5,6 +5,7 @@
     #./bar/waybar.nix
     #./cursor/cursor.nix
     ./caelestia
+    ./gaming
     #./notification/dunst.nix
     ./office
     ./terminal/kitty.nix

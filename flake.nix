@@ -52,6 +52,9 @@
           laptop = nixpkgs.lib.nixosSystem {
             modules = modules ++ [ ./src/hosts/laptop/configuration.nix ];
           };
+          desktop = nixpkgs.lib.nixosSystem {
+            modules = modules ++ [ ./src/hosts/desktop/configuration.nix ];
+          };
         };
     };
 }

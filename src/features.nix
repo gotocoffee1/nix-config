@@ -4,6 +4,9 @@ with lib;
   options.envFeatures = {
     gui = {
       enable = mkEnableOption "Enable GUI";
+      gaming = {
+        enable = mkEnableOption "Enable Gaming";
+      };
     };
     ssh = {
       enable = mkEnableOption "Enable SSH";
@@ -13,4 +16,3 @@ with lib;
     };
   };
 }
-
