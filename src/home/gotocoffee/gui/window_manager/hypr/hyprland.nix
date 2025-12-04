@@ -64,7 +64,7 @@ in
         ];
 
         bindin = [
-          "$mod, catchall, global, caelestia:launcherInterrupt"
+          #"$mod, catchall, global, caelestia:launcherInterrupt"
           "$mod, mouse:272, global, caelestia:launcherInterrupt"
           "$mod, mouse:273, global, caelestia:launcherInterrupt"
           "$mod, mouse:274, global, caelestia:launcherInterrupt"

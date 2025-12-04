@@ -1,14 +1,15 @@
-{...}:
+{ ... }:
 {
   programs.git = {
     enable = true;
-    userEmail = "gotocoffee1@gmail.com";
-    userName = "gotocoffee";
-    extraConfig = {
+    settings = {
+      user = {
+        email = "gotocoffee1@gmail.com";
+        name = "gotocoffee";
+      };
       pull = {
         ff = true;
       };
     };
   };
 }
-

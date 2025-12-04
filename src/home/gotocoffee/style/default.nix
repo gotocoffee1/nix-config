@@ -2,6 +2,7 @@
 {
   stylix = {
     enable = true;
+    overlays.enable = false; # #1832
     polarity = "dark";
     #image = ../gui/wallpaper/minimal/simple-sharing-v0-27d3vwajcadd1.webp;
     base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-dark.yaml";
@@ -25,7 +26,7 @@
         name = "DejaVu Sans";
       };
       emoji = {
-        package = pkgs.noto-fonts-emoji;
+        package = pkgs.noto-fonts-color-emoji;
         name = "Noto Color Emoji";
       };
       sizes = {
