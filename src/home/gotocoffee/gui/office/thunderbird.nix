@@ -7,8 +7,5 @@ in
     enable = gui.enable;
     settings = {
     };
-    profiles.main = {
-      isDefault = true;
-    };
   };
 }
