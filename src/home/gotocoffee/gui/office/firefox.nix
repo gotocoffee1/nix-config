@@ -24,7 +24,20 @@ in
           ublock-origin
         ];
       };
+
+      search = {
+        force = true;
+        default = "ecosia";
+      };
       settings = {
+        "browser.startup.homepage" = "about:blank";
+        "browser.newtabpage.enabled" = false;
+        # Prevent Firefox from suggesting to re-open tabs from last session
+        "browser.startup.couldRestoreSession.count" = -1;
+        # Default Ctrl-F to highlight all results by default
+        "findbar.highlightAll" = true;
+        "browser.toolbars.bookmarks.visibility" = "always";
+
         "extensions.autoDisableScopes" = 0;
         "extensions.update.autoUpdateDefault" = false;
         "extensions.update.enabled" = false;
