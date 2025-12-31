@@ -20,8 +20,11 @@
       url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    sops-nix = {
+      url = "github:Mic92/sops-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
-
   outputs =
     {
       self,
@@ -29,6 +32,7 @@
       home-manager,
       stylix,
       caelestia,
+      sops-nix,
       ...
     }@inputs:
     {
@@ -36,10 +40,12 @@
         let
           modules = [
             home-manager.nixosModules.home-manager
+            sops-nix.nixosModules.sops
             {
               home-manager.sharedModules = [
                 stylix.homeModules.stylix
                 caelestia.homeManagerModules.default
+                sops-nix.homeManagerModules.sops
               ];
               home-manager.extraSpecialArgs = { inherit inputs; };
             }

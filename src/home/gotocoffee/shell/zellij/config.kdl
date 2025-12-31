@@ -125,6 +125,7 @@ keybinds clear-defaults=true {
     }
 }
 
+show_startup_tips false
 pane_frames false
 simplified_ui true
 
