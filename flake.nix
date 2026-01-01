@@ -14,7 +14,7 @@
     };
     caelestia = {
       url = "github:caelestia-dots/shell";
-      #inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
     firefox-addons = {
       url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
