@@ -38,6 +38,10 @@ in
         "findbar.highlightAll" = true;
         "browser.toolbars.bookmarks.visibility" = "always";
 
+        "privacy.sanitize.pending" =
+          "[{\"id\":\"shutdown\",\"itemsToClear\":[\"cache\",\"formdata\",\"browsingHistoryAndDownloads\",\"cookiesAndStorage\"],\"options\":{}},{\"id\":\"newtab-container\",\"itemsToClear\":[],\"options\":{}}]";
+        "privacy.sanitize.sanitizeOnShutdown" = true;
+
         "extensions.autoDisableScopes" = 0;
         "extensions.update.autoUpdateDefault" = false;
         "extensions.update.enabled" = false;
