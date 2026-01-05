@@ -3,6 +3,7 @@ let
   gui = config.homeFeatures.gui;
 in
 {
+  home.file.".face".source = ./face.png;
   programs.caelestia = {
     enable = gui.enable;
     systemd = {

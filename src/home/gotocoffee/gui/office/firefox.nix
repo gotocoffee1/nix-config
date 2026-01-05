@@ -25,10 +25,15 @@ in
         ];
       };
 
-      search = {
-        force = true;
-        default = "ecosia";
-      };
+      search =
+        let
+          engine = "ecosia";
+        in
+        {
+          force = true;
+          default = engine;
+          privateDefault = engine;
+        };
       settings = {
         "browser.startup.homepage" = "about:blank";
         "browser.newtabpage.enabled" = false;

@@ -1,4 +1,4 @@
-{ lib, ... }:
+{ ... }:
 {
   imports = [
     #./app_launcher/fuzzel.nix
@@ -11,6 +11,6 @@
     ./terminal/kitty.nix
     #./wallpaper/wpaperd.nix
     #./window_manager/sway/sway.nix
-    ./window_manager/hypr/hyprland.nix
+    ./window_manager/hypr
   ];
 }
