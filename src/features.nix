@@ -4,6 +4,10 @@ with lib;
   options.envFeatures = {
     gui = {
       enable = mkEnableOption "Enable GUI";
+      monitor = mkOption {
+        type = types.listOf types.str;
+        default = [ ];
+      };
       gaming = {
         enable = mkEnableOption "Enable Gaming";
       };

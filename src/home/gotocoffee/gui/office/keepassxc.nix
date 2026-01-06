@@ -6,6 +6,9 @@ in
   programs.keepassxc = {
     enable = gui.enable;
     settings = {
+      Security = {
+        EnableCopyOnDoubleClick = true;
+      };
       PasswordGenerator = {
         LowerCase = true;
         UpperCase = true;

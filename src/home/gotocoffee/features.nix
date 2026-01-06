@@ -8,6 +8,10 @@ in
   options.homeFeatures = {
     gui = {
       enable = mkEnableOption "Enable GUI" // optionalAttrs hasEnv { default = env.gui.enable; };
+      monitor = mkOption {
+        type = types.listOf types.str;
+        default = optionals hasEnv env.gui.monitor;
+      };
       vnc = {
         enable = mkEnableOption "Enable VNC" // optionalAttrs hasEnv { default = env.hardware.isVirtual; };
       };
