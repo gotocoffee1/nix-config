@@ -99,7 +99,6 @@ in
     fish.enable = true;
 
     direnv.enable = true;
-    ssh.startAgent = true;
     dconf.enable = true; # https://github.com/danth/stylix/issues/139
   };
 
