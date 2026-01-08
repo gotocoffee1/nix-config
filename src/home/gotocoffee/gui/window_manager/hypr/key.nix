@@ -22,25 +22,48 @@ in
     "$mod" = "Super";
     bind = [
       # https://i3wm.org/docs/refcard.html
-
+      # Basics
       "$mod, Return, exec, ${gui.terminal}"
       "$mod, H, movefocus, l"
       "$mod, J, movefocus, d"
       "$mod, K, movefocus, u"
       "$mod, L, movefocus, r"
-
-      "$mod Shift, H, swapwindow, l"
-      "$mod Shift, J, swapwindow, d"
-      "$mod Shift, K, swapwindow, u"
-      "$mod Shift, L, swapwindow, r"
-
+      # Moving windows
+      "$mod Shift, H, movewindow, l"
+      "$mod Shift, J, movewindow, d"
+      "$mod Shift, K, movewindow, u"
+      "$mod Shift, L, movewindow, r"
+      # Modifying windows
       "$mod, F, fullscreen"
       "$mod, R, submap, resize"
-
+      # Floating
       "$mod Shift, Space, togglefloating"
+      # Using workspaces
+      "$mod, 1, workspace, 1"
+      "$mod, 2, workspace, 2"
+      "$mod, 3, workspace, 3"
+      "$mod, 4, workspace, 4"
+      "$mod, 5, workspace, 5"
+      "$mod, 6, workspace, 6"
+      "$mod, 7, workspace, 7"
+      "$mod, 8, workspace, 8"
+      "$mod, 9, workspace, 9"
+      "$mod, 0, workspace, 10"
 
-      "$mod Shift, Q, killactive"
+      "$mod Shift, 1, movetoworkspacesilent, 1"
+      "$mod Shift, 2, movetoworkspacesilent, 2"
+      "$mod Shift, 3, movetoworkspacesilent, 3"
+      "$mod Shift, 4, movetoworkspacesilent, 4"
+      "$mod Shift, 5, movetoworkspacesilent, 5"
+      "$mod Shift, 6, movetoworkspacesilent, 6"
+      "$mod Shift, 7, movetoworkspacesilent, 7"
+      "$mod Shift, 8, movetoworkspacesilent, 8"
+      "$mod Shift, 9, movetoworkspacesilent, 9"
+      "$mod Shift, 0, movetoworkspacesilent, 10"
+
+      # Opening applications / Closing windows
       "$mod, D, global, caelestia:launcher"
+      "$mod Shift, Q, killactive"
     ]
     ++ [
       "Ctrl+Alt, Delete, global, caelestia:session"
@@ -69,6 +92,10 @@ in
       "$mod, mouse:277, global, caelestia:launcherInterrupt"
       "$mod, mouse_up, global, caelestia:launcherInterrupt"
       "$mod, mouse_down, global, caelestia:launcherInterrupt"
+    ];
+    bindm = [
+      "$mod, mouse:272, movewindow"
+      "$mod, Control_L, movewindow"
     ];
 
     bindl = [

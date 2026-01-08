@@ -23,6 +23,20 @@ in
 
         settings = {
           monitor = gui.monitor;
+          workspace =
+            let
+              workspaces =
+                monitors:
+                let
+                  per = builtins.div 10 (builtins.length monitors);
+                  getName = s: builtins.head (builtins.split "," s);
+                  num = n: i: toString (n * per + i + 1);
+                  make = n: monitor: builtins.genList (i: "${num n i}, monitor:${getName monitor}") per;
+                  result = lists.imap0 make monitors;
+                in
+                concatLists result;
+            in
+            workspaces gui.monitor;
           input = {
             kb_layout = "de";
             numlock_by_default = true;
@@ -53,6 +67,7 @@ in
             gaps_out = 5;
             gaps_workspaces = 50;
             border_size = gui.border;
+            resize_on_border = true;
           };
           decoration = {
             rounding = gui.rounding;

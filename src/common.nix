@@ -116,12 +116,15 @@ in
     };
     greetd = {
       enable = features.gui.enable;
-      settings = rec {
-        initial_session = {
-          command = "Hyprland";
-          user = "gotocoffee";
+      useTextGreeter = true;
+      settings = {
+        default_session = {
+          command = lib.concatStringsSep " " [
+            "${pkgs.tuigreet}/bin/tuigreet"
+            "--time --remember --remember-user-session --user-menu --asterisks"
+          ];
+          user = "greeter";
         };
-        default_session = initial_session;
       };
     };
   };
