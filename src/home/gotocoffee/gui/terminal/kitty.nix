@@ -5,8 +5,9 @@ in
 {
   programs.kitty = {
     enable = gui.enable;
-    settings = { };
-    extraConfig =
-      "mouse_map middle release ungrabbed";
+    settings = {
+      cursor_trail = 1;
+    };
+    extraConfig = "mouse_map middle release ungrabbed";
   };
 }

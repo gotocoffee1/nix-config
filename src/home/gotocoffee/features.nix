@@ -1,4 +1,9 @@
-{ lib, osConfig, ... }:
+{
+  pkgs,
+  lib,
+  osConfig,
+  ...
+}:
 with lib;
 let
   hasEnv = osConfig ? envFeatures;
@@ -27,24 +32,37 @@ in
         type = types.str;
         default = "kitty";
       };
+      explorer = mkOption {
+        type = types.str;
+        default = "dolphin";
+      };
       border = mkOption {
         type = types.ints.unsigned;
         default = 2;
       };
-      fonts = {
-        sans = {
-          name = mkOption {
-            type = types.str;
-            default = "DejaVu Sans";
-          };
-        };
-        mono = {
-          name = mkOption {
-            type = types.str;
-            default = "FiraCode Nerd Font";
-          };
-        };
-      };
     };
+    kb_layout = mkOption {
+      type = types.str;
+      default = if hasEnv then env.kb_layout else "de";
+    };
+    fonts =
+      let
+        mkFont = name: package: {
+          name = mkOption {
+            type = types.str;
+            default = name;
+          };
+          package = mkOption {
+            type = types.package;
+            default = package;
+          };
+        };
+      in
+      {
+        serif = mkFont "DejaVu Serif" pkgs.dejavu_fonts;
+        sans = mkFont "DejaVu Sans" pkgs.dejavu_fonts;
+        mono = mkFont "FiraCode Nerd Font" pkgs.nerd-fonts.fira-code;
+        emoji = mkFont "Noto Color Emoji" pkgs.noto-fonts-color-emoji;
+      };
   };
 }

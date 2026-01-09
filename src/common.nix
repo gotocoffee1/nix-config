@@ -55,7 +55,7 @@ in
     };
 
   # Configure console keymap
-  console.keyMap = "de";
+  console.keyMap = features.kb_layout;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users = {
@@ -112,6 +112,15 @@ in
         PasswordAuthentication = false;
         KbdInteractiveAuthentication = false;
       };
+    };
+    kmscon = {
+      enable = true;
+      extraConfig = ''
+        xkb-layout=${features.kb_layout}
+      '';
+      fonts = [
+        features.fonts.mono
+      ];
     };
     greetd = {
       enable = features.gui.enable;

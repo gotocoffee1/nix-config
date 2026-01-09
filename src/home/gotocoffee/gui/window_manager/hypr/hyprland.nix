@@ -38,7 +38,7 @@ in
             in
             workspaces gui.monitor;
           input = {
-            kb_layout = "de";
+            kb_layout = config.homeFeatures.kb_layout;
             numlock_by_default = true;
             touchpad = {
               natural_scroll = true;

@@ -1,4 +1,7 @@
-{ pkgs, ... }:
+{ pkgs, config, ... }:
+let
+  fonts = config.homeFeatures.fonts;
+in
 {
   stylix = {
     enable = true;
@@ -13,22 +16,10 @@
       dark = "Gruvbox-Plus-Dark";
     };
     fonts = {
-      monospace = {
-        name = "FiraCode Nerd Font";
-        package = pkgs.nerd-fonts.fira-code;
-      };
-      serif = {
-        package = pkgs.dejavu_fonts;
-        name = "DejaVu Serif";
-      };
-      sansSerif = {
-        package = pkgs.dejavu_fonts;
-        name = "DejaVu Sans";
-      };
-      emoji = {
-        package = pkgs.noto-fonts-color-emoji;
-        name = "Noto Color Emoji";
-      };
+      monospace = fonts.mono;
+      serif = fonts.serif;
+      sansSerif = fonts.sans;
+      emoji = fonts.emoji;
       sizes = {
         popups = 12;
         desktop = 12;

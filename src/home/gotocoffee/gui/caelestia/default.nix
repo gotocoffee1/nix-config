@@ -1,6 +1,7 @@
 { config, ... }:
 let
   gui = config.homeFeatures.gui;
+  fonts = config.homeFeatures.fonts;
 in
 {
   home.file.".face".source = ./face.png;
@@ -15,9 +16,9 @@ in
       appearance = {
         font = {
           family = {
-            clock = gui.fonts.sans.name;
-            mono = gui.fonts.mono.name;
-            sans = gui.fonts.sans.name;
+            clock = fonts.sans.name;
+            mono = fonts.mono.name;
+            sans = fonts.sans.name;
           };
         };
         transparency = {
@@ -31,8 +32,8 @@ in
       };
       general = {
         apps = {
-          terminal = [ "${gui.terminal}" ];
-          explorer = [ "dolphin" ];
+          terminal = [ gui.terminal ];
+          explorer = [ gui.explorer ];
         };
       };
       background = {
