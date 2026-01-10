@@ -12,6 +12,7 @@ in
     ./features.nix
     /etc/nixos/hardware-configuration.nix
     ./flavors/desktop.nix
+    ./style.nix
   ]
   ++ lib.optional (builtins.pathExists ./extra/default.nix) ./extra;
   specialisation = {
@@ -118,9 +119,6 @@ in
       extraConfig = ''
         xkb-layout=${features.kb_layout}
       '';
-      fonts = [
-        features.fonts.mono
-      ];
     };
     greetd = {
       enable = features.gui.enable;
@@ -130,6 +128,7 @@ in
           command = lib.concatStringsSep " " [
             "${pkgs.tuigreet}/bin/tuigreet"
             "--time --remember --remember-user-session --user-menu --asterisks"
+            "--theme 'border=magenta;text=cyan;prompt=green;time=red;action=blue;button=yellow;container=black;input=red'"
           ];
           user = "greeter";
         };

@@ -40,10 +40,10 @@
         let
           modules = [
             home-manager.nixosModules.home-manager
+            stylix.nixosModules.stylix
             sops-nix.nixosModules.sops
             {
               home-manager.sharedModules = [
-                stylix.homeModules.stylix
                 caelestia.homeManagerModules.default
                 sops-nix.homeManagerModules.sops
               ];
