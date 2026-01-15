@@ -12,6 +12,10 @@
       url = "github:nix-community/stylix/release-25.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nixvim = {
+      url = "github:nix-community/nixvim/nixos-25.11";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     caelestia = {
       url = "github:caelestia-dots/shell";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -31,6 +35,7 @@
       nixpkgs,
       home-manager,
       stylix,
+      nixvim,
       caelestia,
       sops-nix,
       ...
@@ -44,23 +49,30 @@
             sops-nix.nixosModules.sops
             {
               home-manager.sharedModules = [
+                nixvim.homeModules.nixvim
                 caelestia.homeManagerModules.default
                 sops-nix.homeManagerModules.sops
               ];
               home-manager.extraSpecialArgs = { inherit inputs; };
             }
+            ./src/common.nix
           ];
+
+          makeOS = name: {
+            ${name} = nixpkgs.lib.nixosSystem {
+              modules = modules ++ [
+                ./src/hosts/${name}
+                {
+                  networking.hostName = name;
+                }
+              ];
+            };
+          };
         in
-        {
-          vm = nixpkgs.lib.nixosSystem {
-            modules = modules ++ [ ./src/hosts/vm/configuration.nix ];
-          };
-          laptop = nixpkgs.lib.nixosSystem {
-            modules = modules ++ [ ./src/hosts/laptop/configuration.nix ];
-          };
-          desktop = nixpkgs.lib.nixosSystem {
-            modules = modules ++ [ ./src/hosts/desktop/configuration.nix ];
-          };
-        };
+        { }
+
+        // makeOS "coffee-maker"
+        // makeOS "coffee-pot"
+        // makeOS "coffee-bean";
     };
 }

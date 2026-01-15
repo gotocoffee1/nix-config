@@ -8,8 +8,4 @@
       ];
     };
   };
-  imports = [
-    ../../common.nix
-  ];
-  networking.hostName = "coffee-maker";
 }

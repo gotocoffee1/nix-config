@@ -11,14 +11,14 @@ in
   imports = [
     ./features.nix
     /etc/nixos/hardware-configuration.nix
-    ./flavors/desktop.nix
+    ./specialisations/gui.nix
     ./style.nix
   ]
   ++ lib.optional (builtins.pathExists ./extra/default.nix) ./extra;
   specialisation = {
     headless.configuration = {
       imports = [
-        ./flavors/headless.nix
+        ./specialisations/headless.nix
       ];
     };
   };
@@ -134,21 +134,41 @@ in
         };
       };
     };
+    # printer
+    avahi = {
+      enable = true;
+      nssmdns4 = true;
+      openFirewall = true;
+    };
+
+    printing = {
+      enable = true;
+      drivers = with pkgs; [
+        cups-filters
+        cups-browsed
+      ];
+    };
   };
 
   # for pipewire
   security.rtkit.enable = true;
 
-  hardware.bluetooth = {
-    enable = true;
-    powerOnBoot = true;
-    settings = {
-      General = {
-        Experimental = true;
-        FastConnectable = true;
-      };
-      Policy = {
-        AutoEnable = true;
+  hardware = {
+    # scanner
+    sane = {
+      enable = true;
+    };
+    bluetooth = {
+      enable = true;
+      powerOnBoot = true;
+      settings = {
+        General = {
+          Experimental = true;
+          FastConnectable = true;
+        };
+        Policy = {
+          AutoEnable = true;
+        };
       };
     };
   };

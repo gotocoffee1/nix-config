@@ -2,12 +2,13 @@
 {
   home.stateVersion = "24.11";
   imports = [
-    ./editor/neovim.nix
+    ./editor
     ./features.nix
     ./gui
+    ./music
     ./shell
     ./style
     ./tools
-    ./vcs/git.nix
+    ./vcs
   ];
 }
