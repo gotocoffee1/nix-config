@@ -11,4 +11,8 @@
     ./tools
     ./vcs
   ];
+  xdg.userDirs = {
+    enable = true;
+    createDirectories = true;
+  };
 }
