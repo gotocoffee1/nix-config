@@ -34,7 +34,7 @@ in
       };
       explorer = mkOption {
         type = types.str;
-        default = "dolphin";
+        default = "yazi";
       };
       border = mkOption {
         type = types.ints.unsigned;

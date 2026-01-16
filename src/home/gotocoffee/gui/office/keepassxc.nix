@@ -6,6 +6,9 @@ in
   programs.keepassxc = {
     enable = gui.enable;
     settings = {
+      GUI = {
+        ApplicationTheme = "dark";
+      };
       Security = {
         EnableCopyOnDoubleClick = true;
       };

@@ -11,7 +11,7 @@ let
 in
 {
   config = mkIf gui.enable {
-    home.packages = with pkgs; [ kdePackages.dolphin ] ++ lib.optional vnc.enable wayvnc;
+    home.packages = with pkgs; lib.optional vnc.enable wayvnc;
 
     wayland.windowManager.hyprland =
       let
@@ -79,22 +79,5 @@ in
         }
         // key.binds;
       };
-    xdg.configFile."kdeglobals".text = ''
-      [General]
-      TerminalApplication=${gui.terminal}
-    '';
-    xdg.portal = {
-      enable = true;
-      extraPortals = [
-        pkgs.kdePackages.xdg-desktop-portal-kde
-      ];
-      config.hyprland = {
-        default = [
-          "hyprland"
-          "gtk"
-        ];
-        "org.freedesktop.impl.portal.FileChooser" = "kde";
-      };
-    };
   };
 }

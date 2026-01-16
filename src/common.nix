@@ -10,7 +10,6 @@ in
 {
   imports = [
     ./features.nix
-    /etc/nixos/hardware-configuration.nix
     ./specialisations/gui.nix
     ./style.nix
   ]

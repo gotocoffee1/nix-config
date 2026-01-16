@@ -8,4 +8,5 @@
       ];
     };
   };
+  imports = [ ./hardware-configuration.nix ];
 }
