@@ -80,6 +80,13 @@ in
       "$mod, V, exec, pkill fuzzel || caelestia clipboard"
       "$mod+Alt, V, exec, pkill fuzzel || caelestia clipboard -d"
       "$mod, Period, exec, pkill fuzzel || caelestia emoji -p"
+
+      ", XF86Calculator, exec, kitty qalc"
+      ", XF86Tools, exec, kitty rmpc"
+      ", XF86Explorer, exec, kitty yazi"
+      "$mod, E, exec, kitty yazi"
+      #XF86Search
+      ", Pause, pass, class:^discord$"
     ];
 
     bindin = [
@@ -97,7 +104,6 @@ in
       "$mod, mouse:272, movewindow"
       "$mod, Control_L, movewindow"
     ];
-
     bindl = [
       # Misc
 
@@ -118,8 +124,13 @@ in
       "Ctrl+$mod, Minus, global, caelestia:mediaPrev"
       ", XF86AudioPrev, global, caelestia:mediaPrev"
       ", XF86AudioStop, global, caelestia:mediaStop"
+      ", XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
 
       ", Print, exec, caelestia screenshot" # Full screen capture > clipboard
+    ];
+    bindle = [
+      ", XF86AudioRaiseVolume, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ 0; wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 10%+"
+      ", XF86AudioLowerVolume, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ 0; wpctl set-volume @DEFAULT_AUDIO_SINK@ 10%-"
     ];
   };
 }
