@@ -39,6 +39,7 @@ in
             workspaces gui.monitor;
           input = {
             kb_layout = config.homeFeatures.kb_layout;
+            kb_variant = "nodeadkeys";
             numlock_by_default = true;
             touchpad = {
               natural_scroll = true;

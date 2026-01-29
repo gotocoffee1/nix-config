@@ -69,7 +69,13 @@
             };
           };
         in
-        { }
+        {
+          coffee-server = nixpkgs.lib.nixosSystem {
+            modules = [
+              ./src/hosts/coffee-server
+            ];
+          };
+        }
 
         // makeOS "coffee-maker"
         // makeOS "coffee-pot"

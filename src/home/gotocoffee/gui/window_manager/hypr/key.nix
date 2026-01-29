@@ -49,6 +49,7 @@ in
       "$mod, 8, workspace, 8"
       "$mod, 9, workspace, 9"
       "$mod, 0, workspace, 10"
+      "$mod, asciicircum, togglespecialworkspace"
 
       "$mod Shift, 1, movetoworkspacesilent, 1"
       "$mod Shift, 2, movetoworkspacesilent, 2"
@@ -60,6 +61,7 @@ in
       "$mod Shift, 8, movetoworkspacesilent, 8"
       "$mod Shift, 9, movetoworkspacesilent, 9"
       "$mod Shift, 0, movetoworkspacesilent, 10"
+      "$mod Shift, asciicircum, movetoworkspacesilent, special"
 
       # Opening applications / Closing windows
       "$mod, D, global, caelestia:launcher"
