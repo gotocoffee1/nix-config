@@ -1,8 +1,11 @@
 {
   envFeatures = {
-    hardware.isVirtual = true;
+    hardware.isVirtual = false;
     gui = {
-      monitor = [ "Virtual-1, 1920x1080, 0x0, 1" ];
+      monitor = [
+        "eDP-1, preferred, auto, 1"
+      ];
     };
   };
+  imports = [ ./hardware-configuration.nix ];
 }
