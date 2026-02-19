@@ -46,7 +46,13 @@ in
         thickness = gui.border;
       };
       bar.status = {
+        showAudio = true;
         showBattery = false;
+        showMicrophone = true;
+        showLockStatus = false;
+      };
+      launcher = {
+        actionPrefix = ":";
       };
     };
     cli = {

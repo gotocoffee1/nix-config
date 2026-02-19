@@ -52,6 +52,7 @@
                 nixvim.homeModules.nixvim
                 caelestia.homeManagerModules.default
                 sops-nix.homeManagerModules.sops
+                stylix.homeModules.stylix
               ];
               home-manager.extraSpecialArgs = { inherit inputs; };
             }

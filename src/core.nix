@@ -10,6 +10,7 @@ in
 {
   imports = [
     ./features.nix
+    ./users
   ];
 
   nix.settings.experimental-features = [
@@ -46,19 +47,6 @@ in
 
   # Configure console keymap
   console.useXkbConfig = true;
-  # Define a user account. Don't forget to set a password with ‘passwd’.
-  users = {
-    users.gotocoffee = {
-      isNormalUser = true;
-      description = "gotocoffee";
-      extraGroups = [
-        "networkmanager"
-        "wheel"
-      ];
-      packages = with pkgs; [ ];
-      openssh.authorizedKeys.keyFiles = lib.optional features.ssh.enable ./home/gotocoffee/keys/id_ed25519.pub;
-    };
-  };
 
   # Enable the OpenSSH daemon.
   services = {

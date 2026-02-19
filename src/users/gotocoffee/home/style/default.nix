@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, config, ... }:
 {
   stylix = {
     #image = ../gui/wallpaper/minimal/simple-sharing-v0-27d3vwajcadd1.webp;
@@ -24,5 +24,9 @@
       qt.enable = true;
       firefox.profileNames = [ "default" ];
     };
+  }
+  // import ../../style.nix {
+    fonts = config.homeFeatures.fonts;
+    inherit pkgs;
   };
 }

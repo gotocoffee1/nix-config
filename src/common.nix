@@ -10,7 +10,6 @@ in
 {
   imports = [
     ./specialisations/gui.nix
-    ./style.nix
     ./core.nix
   ]
   ++ lib.optional (builtins.pathExists ./extra/default.nix) ./extra;
@@ -35,11 +34,6 @@ in
     useUserPackages = true;
     useGlobalPkgs = true;
     backupFileExtension = "backup";
-    users.gotocoffee = {
-      imports = [
-        ./home/gotocoffee
-      ];
-    };
   };
 
   # Allow unfree packages
