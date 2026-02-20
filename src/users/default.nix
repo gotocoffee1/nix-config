@@ -1,11 +1,14 @@
-{ config, lib, ... }:
+{
+  lib,
+  users,
+  ...
+}:
 let
-  features = config.envFeatures;
-  users = [
+  allUsers = [
     "gotocoffee"
     "snow_owlia"
   ];
-  mainUser = builtins.head features.users;
+  mainUser = builtins.head users;
 in
 {
   users = {
@@ -13,7 +16,7 @@ in
       let
         makeUser = uid: name: {
           ${name} = {
-            enable = builtins.elem name features.users;
+            enable = builtins.elem name users;
             uid = 1000 + uid;
             isNormalUser = true;
             description = name;
@@ -21,11 +24,13 @@ in
           };
         };
       in
-      lib.mergeAttrsList (lib.lists.imap0 makeUser users);
+      lib.mergeAttrsList (lib.lists.imap0 makeUser allUsers);
   };
-  imports = builtins.map (name: ./${name}) (
-    builtins.filter (name: builtins.pathExists ./${name}/default.nix) users
-  );
+  imports =
+    builtins.map (name: ./${name}) (
+      builtins.filter (name: builtins.pathExists ./${name}/default.nix) users
+    )
+    ++ lib.optional (builtins.pathExists ./${mainUser}/main.nix) ./${mainUser}/main.nix;
 
   home-manager = lib.mkIf true {
     users =
@@ -36,6 +41,6 @@ in
           };
         };
       in
-      lib.mergeAttrsList (builtins.map makeUser features.users);
+      lib.mergeAttrsList (builtins.map makeUser users);
   };
 }

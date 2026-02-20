@@ -52,14 +52,13 @@
                 nixvim.homeModules.nixvim
                 caelestia.homeManagerModules.default
                 sops-nix.homeManagerModules.sops
-                stylix.homeModules.stylix
               ];
               home-manager.extraSpecialArgs = { inherit inputs; };
             }
             ./src/common.nix
           ];
 
-          makeOS = name: {
+          makeOS = name: users: {
             ${name} = nixpkgs.lib.nixosSystem {
               modules = modules ++ [
                 ./src/hosts/${name}
@@ -67,8 +66,12 @@
                   networking.hostName = name;
                 }
               ];
+              specialArgs = {
+                inherit users;
+              };
             };
           };
+          users1 = [ "gotocoffee" ];
         in
         {
           coffee-server = nixpkgs.lib.nixosSystem {
@@ -78,8 +81,8 @@
           };
         }
 
-        // makeOS "coffee-maker"
-        // makeOS "coffee-pot"
-        // makeOS "coffee-bean";
+        // makeOS "coffee-maker" users1
+        // makeOS "coffee-pot" users1
+        // makeOS "coffee-bean" users1;
     };
 }
