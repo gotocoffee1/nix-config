@@ -11,6 +11,7 @@ in
   imports = [
     ./specialisations/gui.nix
     ./core.nix
+    ./users/home.nix
   ]
   ++ lib.optional (builtins.pathExists ./extra/default.nix) ./extra;
   specialisation = {

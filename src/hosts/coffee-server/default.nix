@@ -1,26 +1,27 @@
 {
-  pkgs,
-  config,
   lib,
   ...
 }:
 {
   imports = [
-    # <nixpkgs/nixos/modules/installer/sd-card/sd-image-aarch64.nix>
     ./pi-hole.nix
     ./nas.nix
     ../../core.nix
+    ./hardware-configuration.nix
   ];
+  envFeatures = lib.mkDefault {
+    ssh.enable = true;
+  };
+  boot = {
+    loader = {
+      grub.enable = false;
+      generic-extlinux-compatible.enable = true;
+    };
+  };
 
-  #sdImage = {
-  #  compressImage = false;
-  #  imageName = "nixos-sd-image-my-cool-rpi.img";
-  #};
+  security.sudo.wheelNeedsPassword = false;
 
   networking.hostName = "coffee-server";
 
   system.stateVersion = "25.11";
-  # nixpkgs.hostPlatform = "aarch64-linux";
-  nixpkgs.hostPlatform = "x86_64-linux";
-
 }

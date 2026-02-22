@@ -26,21 +26,8 @@ in
       in
       lib.mergeAttrsList (lib.lists.imap0 makeUser allUsers);
   };
-  imports =
-    builtins.map (name: ./${name}) (
-      builtins.filter (name: builtins.pathExists ./${name}/default.nix) users
-    )
-    ++ lib.optional (builtins.pathExists ./${mainUser}/main.nix) ./${mainUser}/main.nix;
 
-  home-manager = lib.mkIf true {
-    users =
-      let
-        makeUser = name: {
-          ${name} = {
-            imports = lib.optional (builtins.pathExists ./${name}/home/default.nix) ./${name}/home;
-          };
-        };
-      in
-      lib.mergeAttrsList (builtins.map makeUser users);
-  };
+  imports = builtins.map (name: ./${name}) (
+    builtins.filter (name: builtins.pathExists ./${name}/default.nix) users
+  );
 }

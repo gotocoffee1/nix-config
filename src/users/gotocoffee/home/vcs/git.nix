@@ -12,4 +12,14 @@
       };
     };
   };
+  programs.difftastic = {
+    enable = true;
+    options = {
+      display = "side-by-side-show-both";
+    };
+    git = {
+      enable = true;
+      diffToolMode = true;
+    };
+  };
 }

@@ -78,6 +78,9 @@
             modules = [
               ./src/hosts/coffee-server
             ];
+            specialArgs = {
+              users = users1;
+            };
           };
         }
 
