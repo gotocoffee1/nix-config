@@ -27,7 +27,7 @@
     fsType = "ext4";
   };
 
-  fileSystems."/media/nas" = {
+  fileSystems."/media/EXTERN_DISK" = {
     device = "/dev/disk/by-uuid/f20b1768-219d-4d85-8f93-1f84c91bbe9b";
     fsType = "ext4";
   };

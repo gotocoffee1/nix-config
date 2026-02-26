@@ -12,6 +12,7 @@ let
 in
 {
   users = {
+    mutableUsers = false;
     users =
       let
         makeUser = uid: name: {

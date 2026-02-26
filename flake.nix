@@ -55,37 +55,35 @@
               ];
               home-manager.extraSpecialArgs = { inherit inputs; };
             }
-            ./src/common.nix
           ];
 
-          makeOS = name: users: {
+          makeOS = name: users: entry: {
             ${name} = nixpkgs.lib.nixosSystem {
               modules = modules ++ [
                 ./src/hosts/${name}
                 {
                   networking.hostName = name;
                 }
+                entry
               ];
               specialArgs = {
                 inherit users;
               };
             };
           };
+          common = ./src/common.nix;
+          core = ./src/core.nix;
           users1 = [ "gotocoffee" ];
+          users2 = [
+            "gotocoffee"
+            "snow_owlia"
+          ];
         in
-        {
-          coffee-server = nixpkgs.lib.nixosSystem {
-            modules = [
-              ./src/hosts/coffee-server
-            ];
-            specialArgs = {
-              users = users1;
-            };
-          };
-        }
-
-        // makeOS "coffee-maker" users1
-        // makeOS "coffee-pot" users1
-        // makeOS "coffee-bean" users1;
+        { }
+        // makeOS "coffee-maker" users1 common
+        // makeOS "coffee-pot" users2 common
+        // makeOS "coffee-bean" users1 common
+        // makeOS "coffee-server" users2 core
+        // { };
     };
 }

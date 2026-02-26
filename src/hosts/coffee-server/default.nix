@@ -1,12 +1,12 @@
 {
   lib,
+  pkgs,
   ...
 }:
 {
   imports = [
     ./pi-hole.nix
     ./nas.nix
-    ../../core.nix
     ./hardware-configuration.nix
   ];
   envFeatures = lib.mkDefault {
@@ -17,11 +17,13 @@
       grub.enable = false;
       generic-extlinux-compatible.enable = true;
     };
+    supportedFilesystems = [ "zfs" ];
   };
+  environment.systemPackages = with pkgs; [
+    btop
+  ];
 
   security.sudo.wheelNeedsPassword = false;
 
-  networking.hostName = "coffee-server";
-
-  system.stateVersion = "25.11";
+  networking.hostId = "fbde904b";
 }
