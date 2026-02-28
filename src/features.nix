@@ -22,10 +22,6 @@ with lib;
       type = types.str;
       default = "de";
     };
-    users = mkOption {
-      type = types.listOf types.str;
-      default = [ ];
-    };
     fonts =
       let
         mkFont = name: package: {

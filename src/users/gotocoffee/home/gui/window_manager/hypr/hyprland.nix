@@ -36,7 +36,7 @@ in
                 in
                 concatLists result;
             in
-            workspaces gui.monitor;
+            workspaces gui.monitor ++ [ "special:special, on-created-empty:kitty btop" ];
           input = {
             kb_layout = config.homeFeatures.kb_layout;
             kb_variant = "nodeadkeys";

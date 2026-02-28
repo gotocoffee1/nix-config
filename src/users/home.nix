@@ -16,14 +16,18 @@ in
   home-manager = {
     users =
       let
+        hasHome = name: builtins.pathExists ./${name}/home/default.nix;
+        hasExtraHome = name: builtins.pathExists ../extra/users/${name}/home/default.nix;
         makeUser = name: {
           ${name} = {
             imports =
-              lib.optional (builtins.pathExists ./${name}/home/default.nix) ./${name}/home
-              ++ lib.optional (builtins.pathExists ../extra/users/${name}/home/default.nix) ../extra/users/${name}/home;
+              lib.optional (hasHome name) ./${name}/home
+              ++ lib.optional (hasExtraHome name) ../extra/users/${name}/home;
           };
         };
       in
-      lib.mergeAttrsList (builtins.map makeUser users);
+      lib.mergeAttrsList (
+        builtins.map makeUser (builtins.filter (name: (hasHome name) || (hasExtraHome name)) users)
+      );
   };
 }
