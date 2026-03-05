@@ -9,4 +9,7 @@
     };
   };
   imports = [ ./hardware-configuration.nix ];
+  networking.hostId = "a91287a0";
+  boot.supportedFilesystems = [ "zfs" ];
+  #boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
 }

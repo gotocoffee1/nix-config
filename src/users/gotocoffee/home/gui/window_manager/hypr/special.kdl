@@ -1,0 +1,14 @@
+layout {
+    tab name="Tab #1" focus=true hide_floating_panes=true {
+        pane split_direction="vertical" {
+            pane size="45%" {
+                pane command="rmpc" size="65%" {
+                }
+                pane command="qalc" focus=true size="35%" {
+                }
+            }
+            pane command="btop" size="55%" {
+            }
+        }
+    }
+}

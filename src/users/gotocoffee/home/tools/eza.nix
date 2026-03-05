@@ -4,5 +4,8 @@
     colors = "auto";
     git = true;
     icons = "auto";
+    extraOptions = [
+      "--group"
+    ];
   };
 }

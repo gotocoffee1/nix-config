@@ -36,7 +36,8 @@ in
                 in
                 concatLists result;
             in
-            workspaces gui.monitor ++ [ "special:special, on-created-empty:kitty btop" ];
+            workspaces gui.monitor
+            ++ [ "special:special, on-created-empty:kitty zellij --layout ${./special.kdl}" ];
           input = {
             kb_layout = config.homeFeatures.kb_layout;
             kb_variant = "nodeadkeys";
