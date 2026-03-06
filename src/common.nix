@@ -26,10 +26,6 @@ in
     efi.canTouchEfiVariables = true;
   };
 
-  users = {
-    defaultUserShell = pkgs.fish;
-  };
-
   home-manager = {
     useUserPackages = true;
     useGlobalPkgs = true;
@@ -38,15 +34,10 @@ in
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
-  environment.systemPackages = with pkgs; [
-  ];
+  environment.systemPackages = [ ];
 
   programs = {
     nix-ld.enable = true;
-    hyprland.enable = features.gui.enable;
-    steam.enable = features.gui.enable && features.gui.gaming.enable;
-    fish.enable = true;
-
     direnv.enable = true;
     dconf.enable = true; # https://github.com/danth/stylix/issues/139
   };

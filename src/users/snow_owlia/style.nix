@@ -2,7 +2,7 @@
 {
   enable = true;
   overlays.enable = false; # #1832
-  polarity = "dark";
+  polarity = "light";
   base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-dark.yaml";
   fonts = {
     monospace = fonts.mono;
