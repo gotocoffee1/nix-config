@@ -3,7 +3,7 @@
   enable = true;
   overlays.enable = false; # #1832
   polarity = "light";
-  base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-dark.yaml";
+  base16Scheme = "${pkgs.base16-schemes}/share/themes/sakura.yaml";
   fonts = {
     monospace = fonts.mono;
     serif = fonts.serif;
