@@ -20,4 +20,9 @@ in
     steam.enable = features.gui.enable && features.gui.gaming.enable;
     fish.enable = true;
   };
+  # Select internationalisation properties.
+  i18n.extraLocales = [
+    "de_DE.UTF-8/UTF-8"
+    "en_US.UTF-8/UTF-8"
+  ];
 }
