@@ -41,6 +41,19 @@
       ...
     }@inputs:
     {
+      devShells =
+        let
+          system = "x86_64-linux";
+        in
+        {
+          ${system} = {
+            default =
+              let
+                pkgs = import nixpkgs { inherit system; };
+              in
+              import ./shell.nix { inherit pkgs; };
+          };
+        };
       nixosConfigurations =
         let
           modules = [

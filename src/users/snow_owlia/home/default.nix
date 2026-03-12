@@ -4,8 +4,10 @@
   imports = [
     ./features.nix
     ./gui
+    ./shell
     ./style
   ];
+  home.file.".face".source = ./face.png;
   xdg.userDirs = {
     enable = true;
     createDirectories = true;
