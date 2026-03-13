@@ -1,8 +1,26 @@
+{ lib, ... }:
 {
-  envFeatures = {
-    hardware.isVirtual = true;
-    gui = {
-      monitor = [ "Virtual-1, 1920x1080, 0x0, 1" ];
+  imports = [
+    ../../specialisations/headless.nix
+  ];
+
+  virtualisation.vmVariant = {
+    virtualisation = {
+      graphics = false;
+      forwardPorts = [
+        {
+          from = "host";
+          host.port = 2222;
+          guest.port = 22;
+        }
+      ];
+      sharedDirectories = {
+        devel = {
+          source = "/home/gotocoffee/devel";
+          target = "/home/gotocoffee/devel";
+        };
+      };
     };
   };
+  nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
 }

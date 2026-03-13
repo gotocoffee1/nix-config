@@ -17,9 +17,6 @@ in
         type = types.listOf types.str;
         default = optionals hasEnv env.gui.monitor;
       };
-      vnc = {
-        enable = mkEnableOption "Enable VNC" // optionalAttrs hasEnv { default = env.hardware.isVirtual; };
-      };
       gaming = {
         enable =
           mkEnableOption "Enable Gaming" // optionalAttrs hasEnv { default = env.gui.gaming.enable; };

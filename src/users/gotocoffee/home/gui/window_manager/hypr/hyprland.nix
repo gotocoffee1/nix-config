@@ -7,12 +7,9 @@
 with lib;
 let
   gui = config.homeFeatures.gui;
-  vnc = gui.vnc;
 in
 {
   config = mkIf gui.enable {
-    home.packages = with pkgs; lib.optional vnc.enable wayvnc;
-
     wayland.windowManager.hyprland =
       let
         key = import ./key.nix { gui = gui; };
@@ -51,8 +48,7 @@ in
 
           exec-once = [
             "caelestia-shell -d"
-          ]
-          ++ lib.optional vnc.enable "wayvnc 127.0.0.1";
+          ];
           env = [
             "GTK_USE_PORTAL,1"
             "QT_QPA_PLATFORMTHEME,qt5ct"

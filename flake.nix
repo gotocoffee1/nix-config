@@ -97,6 +97,7 @@
         // makeOS "coffee-pot" users2 common
         // makeOS "coffee-bean" users1 common
         // makeOS "coffee-server" users2 core
+        // makeOS "coffee-vm" users1 common
         // { };
     };
 }

@@ -1,5 +1,4 @@
 {
-  lib,
   pkgs,
   ...
 }:
@@ -8,10 +7,9 @@
     ./pi-hole.nix
     ./nas.nix
     ./hardware-configuration.nix
+    ../../specialisations/headless.nix
   ];
-  envFeatures = lib.mkDefault {
-    ssh.enable = true;
-  };
+
   boot = {
     loader = {
       grub.enable = false;
