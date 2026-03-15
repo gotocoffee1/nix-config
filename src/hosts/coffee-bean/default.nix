@@ -6,5 +6,10 @@
       ];
     };
   };
-  imports = [ ./hardware-configuration.nix ];
+  imports = [
+    ../../common.nix
+    ../../core.nix
+    ../../desktop.nix
+    ./hardware-configuration.nix
+  ];
 }

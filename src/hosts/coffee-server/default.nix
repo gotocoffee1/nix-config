@@ -6,8 +6,9 @@
   imports = [
     ./pi-hole.nix
     ./nas.nix
-    ./hardware-configuration.nix
+    ../../core.nix
     ../../specialisations/headless.nix
+    ./hardware-configuration.nix
   ];
 
   boot = {

@@ -30,12 +30,12 @@ in
   # Configure console keymap
   console.useXkbConfig = true;
 
-  # Enable the OpenSSH daemon.
   services = {
     xserver.xkb = {
       layout = features.kb_layout;
       variant = "nodeadkeys";
     };
+    # Enable the OpenSSH daemon.
     openssh = {
       enable = features.ssh.enable;
       settings = {

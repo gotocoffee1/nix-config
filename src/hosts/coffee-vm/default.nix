@@ -1,6 +1,8 @@
 { lib, ... }:
 {
   imports = [
+    ../../common.nix
+    ../../core.nix
     ../../specialisations/headless.nix
   ];
 
