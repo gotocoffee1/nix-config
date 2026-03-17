@@ -8,9 +8,6 @@ let
   features = config.envFeatures;
 in
 {
-  imports = [
-    ./users/home.nix
-  ];
   # Bootloader.
   boot.loader = {
     systemd-boot.enable = true;

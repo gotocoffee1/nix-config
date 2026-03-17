@@ -70,7 +70,7 @@
             }
           ];
 
-          makeOS = name: users: {
+          makeOS = name: {
             ${name} = nixpkgs.lib.nixosSystem {
               modules = modules ++ [
                 ./src/hosts/${name}
@@ -78,25 +78,15 @@
                   networking.hostName = name;
                 }
               ];
-              specialArgs = {
-                inherit users;
-              };
             };
           };
-          common = ./src/common.nix;
-          core = ./src/core.nix;
-          users1 = [ "gotocoffee" ];
-          users2 = [
-            "gotocoffee"
-            "snow_owlia"
-          ];
         in
         { }
-        // makeOS "coffee-maker" users1
-        // makeOS "coffee-pot" users2
-        // makeOS "coffee-bean" users1
-        // makeOS "coffee-server" users2
-        // makeOS "coffee-vm" users1
+        // makeOS "coffee-maker"
+        // makeOS "coffee-pot"
+        // makeOS "coffee-bean"
+        // makeOS "coffee-server"
+        // makeOS "coffee-vm"
         // { };
     };
 }

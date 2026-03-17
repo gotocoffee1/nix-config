@@ -1,34 +1,46 @@
+users:
 {
   lib,
-  users,
   ...
 }:
 let
-  allUsers = [
-    "gotocoffee"
-    "snow_owlia"
-  ];
-  mainUser = builtins.head users;
+  hasImport =
+    path:
+    let
+      p = if builtins.readFileType path == "directory" then lib.path.append path "default.nix" else path;
+    in
+    builtins.pathExists p;
+  optionalImport = path: cfg: lib.optional (hasImport path) (import path cfg);
 in
 {
   users = {
     mutableUsers = false;
     users =
       let
-        makeUser = uid: name: {
-          ${name} = {
-            enable = builtins.elem name users;
-            uid = 1000 + uid;
-            isNormalUser = true;
-            description = name;
-            extraGroups = lib.optional (mainUser == name) "wheel";
-          };
+        makeUser = name: cfg: {
+          isNormalUser = true;
+          description = name;
         };
       in
-      lib.mergeAttrsList (lib.lists.imap0 makeUser allUsers);
+      lib.mapAttrs makeUser users;
   };
 
-  imports = builtins.map (name: ./${name}) (
-    builtins.filter (name: builtins.pathExists ./${name}/default.nix) users
+  imports = builtins.concatLists (
+    builtins.attrValues (
+      lib.mapAttrs (
+        name: cfg: (optionalImport ./${name} cfg) ++ (optionalImport ../extra/users/${name} cfg)
+      ) users
+    )
   );
+
+  home-manager = {
+    users =
+      let
+        makeUser = name: cfg: {
+          imports =
+            [ ] ++ (optionalImport ./${name}/home cfg) ++ (optionalImport ../extra/users/${name}/home cfg);
+        };
+      in
+      lib.mapAttrs makeUser users;
+  };
 }

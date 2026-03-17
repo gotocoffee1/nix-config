@@ -10,9 +10,7 @@ in
 {
   imports = [
     ./features.nix
-    ./users
   ];
-
   nix.settings = {
     experimental-features = [
       "nix-command"

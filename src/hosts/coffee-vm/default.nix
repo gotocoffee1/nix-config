@@ -4,6 +4,14 @@
     ../../common.nix
     ../../core.nix
     ../../specialisations/headless.nix
+  ]
+  ++ [
+    (import ../../users {
+      gotocoffee = {
+        profile = "devel";
+        isMainUser = true;
+      };
+    })
   ];
 
   virtualisation.vmVariant = {

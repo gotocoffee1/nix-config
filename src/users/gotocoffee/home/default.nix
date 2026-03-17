@@ -1,17 +1,25 @@
-{ ... }:
+{ profile, ... }:
+{ lib, ... }:
+let
+  isDesktop = profile == "desktop";
+in
 {
   home.stateVersion = "25.11";
   imports = [
-    ./editor
     ./features.nix
-    ./gui
-    ./music
-    ./shell
     ./style
+  ]
+  ++ lib.optionals (isDesktop || profile == "devel") [
+    ./editor
+    ./shell
     ./tools
     ./vcs
+  ]
+  ++ lib.optionals isDesktop [
+    ./gui
+    ./music
   ];
-  xdg.userDirs = {
+  xdg.userDirs = lib.mkIf isDesktop {
     enable = true;
     createDirectories = true;
   };

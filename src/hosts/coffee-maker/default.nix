@@ -13,6 +13,14 @@
     ../../core.nix
     ../../desktop.nix
     ./hardware-configuration.nix
+  ]
+  ++ [
+    (import ../../users {
+      gotocoffee = {
+        profile = "desktop";
+        isMainUser = true;
+      };
+    })
   ];
   networking.hostId = "a91287a0";
   boot.supportedFilesystems = [ "zfs" ];
