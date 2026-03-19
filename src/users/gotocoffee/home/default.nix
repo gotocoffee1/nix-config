@@ -2,6 +2,7 @@
 { lib, ... }:
 let
   isDesktop = profile == "desktop";
+  isServer = profile == "server";
 in
 {
   home.stateVersion = "25.11";
@@ -14,6 +15,9 @@ in
     ./shell
     ./tools
     ./vcs
+  ]
+  ++ lib.optionals isServer [
+    ./tools/btop.nix
   ]
   ++ lib.optionals isDesktop [
     ./gui

@@ -11,5 +11,13 @@
     ../../core.nix
     ../../desktop.nix
     ./hardware-configuration.nix
+  ]
+  ++ [
+    (import ../../users {
+      gotocoffee = {
+        profile = "desktop";
+        isMainUser = true;
+      };
+    })
   ];
 }

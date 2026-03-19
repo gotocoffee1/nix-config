@@ -1,3 +1,4 @@
+{ isMainUser, profile, ... }:
 {
   pkgs,
   lib,
@@ -9,12 +10,16 @@ let
 in
 {
   users.users.gotocoffee = {
+    uid = 1000;
     shell = pkgs.fish;
     extraGroups = [
       "networkmanager"
-    ];
+    ]
+    ++ lib.optional isMainUser "wheel";
+
     openssh.authorizedKeys.keyFiles = lib.optional features.ssh.enable ./keys/id_ed25519.pub;
   };
+
   programs = {
     hyprland.enable = features.gui.enable;
     steam.enable = features.gui.enable && features.gui.gaming.enable;

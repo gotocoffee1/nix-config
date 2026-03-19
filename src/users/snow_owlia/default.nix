@@ -1,3 +1,4 @@
+{ ... }:
 {
   lib,
   config,
@@ -7,8 +8,8 @@ let
   features = config.envFeatures;
 in
 {
-
   users.users.snow_owlia = {
+    uid = 1001;
     extraGroups = [
       "networkmanager"
     ];

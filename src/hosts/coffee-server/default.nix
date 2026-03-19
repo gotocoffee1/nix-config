@@ -1,14 +1,32 @@
 {
   pkgs,
+  lib,
   ...
 }:
+let
+  users = {
+    gotocoffee = {
+      profile = "server";
+      isMainUser = true;
+      enableExtra = false;
+    };
+    snow_owlia = {
+      profile = "server";
+      enableExtra = false;
+    };
+  };
+in
 {
   imports = [
     ./pi-hole.nix
-    ./nas.nix
+    ./mealie.nix
+    (import ./nas.nix (builtins.attrNames users))
     ../../core.nix
     ../../specialisations/headless.nix
     ./hardware-configuration.nix
+  ]
+  ++ [
+    (import ../../users users)
   ];
 
   boot = {
@@ -16,13 +34,7 @@
       grub.enable = false;
       generic-extlinux-compatible.enable = true;
     };
-    supportedFilesystems = [ "zfs" ];
   };
-  environment.systemPackages = with pkgs; [
-    btop
-  ];
 
   security.sudo.wheelNeedsPassword = false;
-
-  networking.hostId = "fbde904b";
 }

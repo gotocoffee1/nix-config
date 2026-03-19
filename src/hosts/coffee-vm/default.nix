@@ -10,6 +10,7 @@
       gotocoffee = {
         profile = "devel";
         isMainUser = true;
+        enableExtra = false;
       };
     })
   ];

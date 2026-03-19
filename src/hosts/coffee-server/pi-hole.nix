@@ -23,6 +23,6 @@
   };
   services.pihole-web = {
     enable = true;
-    ports = [ 80 ];
+    ports = [ 9000 ];
   };
 }

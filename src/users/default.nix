@@ -28,7 +28,12 @@ in
   imports = builtins.concatLists (
     builtins.attrValues (
       lib.mapAttrs (
-        name: cfg: (optionalImport ./${name} cfg) ++ (optionalImport ../extra/users/${name} cfg)
+        name: cfg:
+        (optionalImport ./${name} cfg)
+        ++ (lib.optionals (!(cfg ? enableExtra) || cfg.enableExtra) (
+          optionalImport ../extra/users/${name} cfg
+        ))
+        ++ (lib.optionals (cfg ? isMainUser && cfg.isMainUser) (optionalImport ./${name}/main.nix cfg))
       ) users
     )
   );
@@ -38,7 +43,11 @@ in
       let
         makeUser = name: cfg: {
           imports =
-            [ ] ++ (optionalImport ./${name}/home cfg) ++ (optionalImport ../extra/users/${name}/home cfg);
+            [ ]
+            ++ (optionalImport ./${name}/home cfg)
+            ++ (lib.optionals (!(cfg ? enableExtra) || cfg.enableExtra) (
+              optionalImport ../extra/users/${name}/home cfg
+            ));
         };
       in
       lib.mapAttrs makeUser users;

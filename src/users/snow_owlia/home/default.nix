@@ -1,14 +1,20 @@
-{ ... }:
+{ profile, ... }:
+{ lib, ... }:
+let
+  isDesktop = profile == "desktop";
+in
 {
   home.stateVersion = "25.11";
   imports = [
     ./features.nix
-    ./gui
-    ./shell
     ./style
+  ]
+  ++ lib.optionals (isDesktop) [
+    ./shell
+    ./gui
   ];
   home.file.".face".source = ./face.png;
-  xdg.userDirs = {
+  xdg.userDirs = lib.mkIf isDesktop {
     enable = true;
     createDirectories = true;
   };
