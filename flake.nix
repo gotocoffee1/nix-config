@@ -86,7 +86,8 @@
         // makeOS "coffee-pot"
         // makeOS "coffee-bean"
         // makeOS "coffee-server"
-        // makeOS "coffee-vm"
+        // makeOS "coffee-grinder"
+        // makeOS "coffee-grounds"
         // { };
     };
 }

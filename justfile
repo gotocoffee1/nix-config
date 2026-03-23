@@ -1,14 +1,21 @@
 default: build
 
-build:
-	./rebuild.sh
-server:
-	nixos-rebuild --sudo --flake .#coffee-server --target-host coffee-server switch
+build HOST=`hostname`:
+	nixos-rebuild --sudo --flake .#{{ HOST }} --target-host {{ HOST }} switch
 vm:
-	nixos-rebuild --sudo --flake .#coffee-vm build-vm
-test:
-	nixos-rebuild --flake .#coffee-maker dry-build
-	nixos-rebuild --flake .#coffee-pot dry-build
-	nixos-rebuild --flake .#coffee-bean dry-build
-	nixos-rebuild --flake .#coffee-server dry-build
+	nixos-rebuild --flake .#coffee-grinder build-vm
+iso:
+	nixos-rebuild --image-variant iso --flake .#coffee-grounds build-image 
+
+test HOST=`hostname`:
+	nixos-rebuild --flake .#{{ HOST }} dry-build
+
+[parallel]
+test-all:                       \
+	(test "coffee-maker")   \
+	(test "coffee-pot")     \
+	(test "coffee-bean")    \
+	(test "coffee-server")  \
+	#(test "coffee-grinder") \
+	#(test "coffee-grounds") \
 
