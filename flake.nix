@@ -8,6 +8,10 @@
       url = "github:nix-community/home-manager/release-25.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    disko = {
+      url = "github:nix-community/disko";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     stylix = {
       url = "github:nix-community/stylix/release-25.11";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -34,6 +38,7 @@
       self,
       nixpkgs,
       home-manager,
+      disko,
       stylix,
       nixvim,
       caelestia,
@@ -60,6 +65,7 @@
             home-manager.nixosModules.home-manager
             stylix.nixosModules.stylix
             sops-nix.nixosModules.sops
+            disko.nixosModules.disko
             {
               home-manager.sharedModules = [
                 nixvim.homeModules.nixvim
