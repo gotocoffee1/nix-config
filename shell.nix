@@ -4,8 +4,9 @@
 
 pkgs.mkShell {
   packages = with pkgs; [
-    nixfmt-rfc-style
-    sops
     just
+    nixfmt
+    nixos-anywhere
+    sops
   ];
 }

@@ -23,12 +23,12 @@
   boot.extraModulePackages = [ ];
 
   fileSystems."/" = {
-    device = "/dev/disk/by-uuid/44444444-4444-4444-8888-888888888888";
+    device = "/dev/disk/by-label/NIXOS_SD";
     fsType = "ext4";
   };
 
   fileSystems."/media/EXTERN_DISK" = {
-    device = "/dev/disk/by-uuid/f20b1768-219d-4d85-8f93-1f84c91bbe9b";
+    device = "/dev/disk/by-label/EXTERN_DISK";
     fsType = "ext4";
   };
 

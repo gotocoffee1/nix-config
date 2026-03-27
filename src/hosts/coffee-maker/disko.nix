@@ -2,7 +2,7 @@
   disko.devices = {
     disk = {
       main = {
-        device = "/dev/disk/by-id/some-disk-id";
+        device = "/dev/disk/by-id/nvme-INTEL_SSDPEKNW512G8_PHNH9421031T512A";
         type = "disk";
         content = {
           type = "gpt";

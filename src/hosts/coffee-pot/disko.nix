@@ -2,7 +2,7 @@
   disko.devices = {
     disk = {
       main = {
-        device = "/dev/disk/by-id/some-disk-id";
+        device = "/dev/disk/by-id/ata-TOSHIBA_MQ01ABD075_X3HGC402T";
         type = "disk";
         content = {
           type = "gpt";
