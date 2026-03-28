@@ -25,18 +25,20 @@ in
       lib.mapAttrs makeUser users;
   };
 
-  imports = builtins.concatLists (
-    builtins.attrValues (
-      lib.mapAttrs (
-        name: cfg:
-        (optionalImport ./${name} cfg)
-        ++ (lib.optionals (!(cfg ? enableExtra) || cfg.enableExtra) (
-          optionalImport ../extra/users/${name} cfg
-        ))
-        ++ (lib.optionals (cfg ? isMainUser && cfg.isMainUser) (optionalImport ./${name}/main.nix cfg))
-      ) users
+  imports =
+    builtins.concatLists (
+      builtins.attrValues (
+        lib.mapAttrs (
+          name: cfg:
+          (optionalImport ./${name} cfg)
+          ++ (lib.optionals (!(cfg ? enableExtra) || cfg.enableExtra) (
+            optionalImport ../extra/users/${name} cfg
+          ))
+          ++ (lib.optionals (cfg ? isMainUser && cfg.isMainUser) (optionalImport ./${name}/main.nix cfg))
+        ) users
+      )
     )
-  );
+    ++ [ ../extra/default.nix ];
 
   home-manager = {
     users =
