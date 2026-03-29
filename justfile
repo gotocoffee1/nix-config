@@ -4,7 +4,7 @@ build HOST=`hostname`:
 	nixos-rebuild --sudo --ask-sudo-password --flake .#{{ HOST }} --target-host {{ HOST }} switch
 
 deploy HOST_CONFIG IP:
-	nixos-anywhere --flake .#{{ HOST_CONFIG }}' --target-host {{ IP }}
+	nixos-anywhere --flake .#{{ HOST_CONFIG }} --extra-files extra_root --chown /home/gotocoffee 1000:100 --target-host {{ IP }}
 
 image HOST TYPE: 
 	nixos-rebuild --image-variant {{ TYPE }} --flake .#{{ HOST }} build-image 

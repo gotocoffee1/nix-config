@@ -1,4 +1,5 @@
 .direnv
 result
 *.qcow2
+extra_root
 
