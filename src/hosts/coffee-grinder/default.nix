@@ -17,6 +17,10 @@
 
   virtualisation.vmVariant = {
     virtualisation = {
+      memorySize = 8 * 1024;
+      diskSize = 100 * 1024;
+      cores = 4;
+      writableStoreUseTmpfs = false;
       graphics = false;
       forwardPorts = [
         {
