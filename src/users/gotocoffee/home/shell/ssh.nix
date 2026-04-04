@@ -6,8 +6,16 @@
   programs.ssh = {
     enable = true;
     enableDefaultConfig = false;
-    matchBlocks."*" = {
-      addKeysToAgent = "yes";
+    matchBlocks = {
+      "vm" = {
+        hostname = "localhost";
+        port = 2222;
+        forwardAgent = true;
+        addKeysToAgent = "yes";
+      };
+      "*" = {
+        addKeysToAgent = "yes";
+      };
     };
   };
 }

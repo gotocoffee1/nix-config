@@ -3,6 +3,7 @@
 format = """
 [](fg:blue)\
 $os\
+$hostname\
 [](fg:blue bg:green)\
 $directory\
 [](fg:green bg:yellow)\
@@ -68,6 +69,12 @@ Unknown = " "
 Void = " "
 Windows = "󰍲 "
 
+[hostname]
+disabled = false
+style = "fg:black bg:blue"
+format = "[$ssh_symbol$hostname ]($style)"
+ssh_symbol = ""
+
 [directory]
 style = "fg:black bg:green"
 format = "[ $path ]($style)"
@@ -81,7 +88,7 @@ read_only = " 󰌾"
 "Downloads" = " "
 "Music" = "󰝚 "
 "Pictures" = " "
-"Developer" = "󰲋 "
+"devel" = "󰲋 "
 
 [time]
 disabled = false

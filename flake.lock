@@ -267,6 +267,26 @@
         "type": "gitlab"
       }
     },
+    "gruvbox-wallpapers": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1774962632,
+        "narHash": "sha256-qGBw9QxMHmNaDSR91+yPW0S1l0ox7pT9Z0uEoWHWmDk=",
+        "owner": "AngelJumbo",
+        "repo": "gruvbox-wallpapers",
+        "rev": "af10335593e6edc29ea312cdecd0a241c7d65394",
+        "type": "github"
+      },
+      "original": {
+        "owner": "AngelJumbo",
+        "repo": "gruvbox-wallpapers",
+        "type": "github"
+      }
+    },
     "home-manager": {
       "inputs": {
         "nixpkgs": [
@@ -430,6 +450,7 @@
         "caelestia": "caelestia",
         "disko": "disko",
         "firefox-addons": "firefox-addons",
+        "gruvbox-wallpapers": "gruvbox-wallpapers",
         "home-manager": "home-manager",
         "nixpkgs": "nixpkgs",
         "nixvim": "nixvim",

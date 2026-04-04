@@ -1,4 +1,9 @@
-{ config, ... }:
+{
+  config,
+  inputs,
+  pkgs,
+  ...
+}:
 let
   gui = config.homeFeatures.gui;
   fonts = config.homeFeatures.fonts;
@@ -26,7 +31,7 @@ in
         };
       };
       paths = {
-        wallpaperDir = ../wallpaper/minimal;
+        wallpaperDir = inputs.gruvbox-wallpapers.packages."${pkgs.stdenv.hostPlatform.system}".default;
         sessionGif = ./session.gif;
         mediaGif = ./media.gif;
       };
