@@ -42,6 +42,8 @@ in
         # Default Ctrl-F to highlight all results by default
         "findbar.highlightAll" = true;
         "browser.toolbars.bookmarks.visibility" = "always";
+        "browser.translations.automaticallyPopup" = false;
+        "signon.rememberSignons" = false;
 
         "privacy.sanitize.pending" =
           "[{\"id\":\"shutdown\",\"itemsToClear\":[\"cache\",\"formdata\",\"browsingHistoryAndDownloads\",\"cookiesAndStorage\"],\"options\":{}},{\"id\":\"newtab-container\",\"itemsToClear\":[],\"options\":{}}]";
