@@ -17,6 +17,10 @@ boot-image: (image "coffee-grounds" "raw-efi")
 vm:
 	nixos-rebuild --flake .#coffee-grinder build-vm
 
+run-vm: vm
+	sleep 10 && kitty ssh vm &
+	./result/bin/run-coffee-grinder-vm
+
 test HOST=`hostname`:
 	nixos-rebuild --flake .#{{ HOST }} dry-build
 

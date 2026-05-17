@@ -18,6 +18,9 @@
     #  Experiment for yourself to see if you like it!
     relativenumber = true;
 
+    # Disable line wrap
+    wrap = false;
+
     # Enable mouse mode, can be useful for resizing splits for example!
     mouse = "a";
 

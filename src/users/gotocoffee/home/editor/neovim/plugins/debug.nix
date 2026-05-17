@@ -1,4 +1,10 @@
+{ pkgs, ... }:
 {
+  extraPackages = with pkgs; [
+    # Used to format Lua code
+    lldb
+    vscode-extensions.vadimcn.vscode-lldb
+  ];
   # Shows how to use the DAP plugin to debug your code.
   #
   # Primarily focused on configuring the debugger for Go, but can
@@ -39,10 +45,12 @@
     };
   };
 
-  # Add your own debuggers here
-  # plugins.dap-go = {
-  #   enable = true;
-  # };
+  plugins.dap-lldb = {
+    enable = true;
+    settings = {
+      codelldb_path = "${pkgs.vscode-extensions.vadimcn.vscode-lldb}/share/vscode/extensions/vadimcn.vscode-lldb/adapter/codelldb";
+    };
+  };
 
   # https://nix-community.github.io/nixvim/keymaps/index.html
   keymaps = [
@@ -51,10 +59,10 @@
       mode = "n";
       key = "<F5>";
       action.__raw = ''
-        
-                function()
-                  require('dap').continue()
-                end
+
+        function()
+          require('dap').continue()
+        end
       '';
       options = {
         desc = "Debug: Start/Continue";
@@ -64,10 +72,10 @@
       mode = "n";
       key = "<F11>";
       action.__raw = ''
-        
-                function()
-                  require('dap').step_into()
-                end
+
+        function()
+          require('dap').step_into()
+        end
       '';
       options = {
         desc = "Debug: Step Into";
@@ -77,10 +85,10 @@
       mode = "n";
       key = "<F10>";
       action.__raw = ''
-        
-                function()
-                  require('dap').step_over()
-                end
+
+        function()
+          require('dap').step_over()
+        end
       '';
       options = {
         desc = "Debug: Step Over";
@@ -90,10 +98,10 @@
       mode = "n";
       key = "<F12>";
       action.__raw = ''
-        
-                function()
-                  require('dap').step_out()
-                end
+
+        function()
+          require('dap').step_out()
+        end
       '';
       options = {
         desc = "Debug: Step Out";
@@ -103,10 +111,10 @@
       mode = "n";
       key = "<F9>";
       action.__raw = ''
-        
-                function()
-                  require('dap').toggle_breakpoint()
-                end
+
+        function()
+          require('dap').toggle_breakpoint()
+        end
       '';
       options = {
         desc = "Debug: Toggle Breakpoint";
@@ -116,10 +124,10 @@
       mode = "n";
       key = "<leader>B";
       action.__raw = ''
-        
-                function()
-                  require('dap').set_breakpoint(vim.fn.input 'Breakpoint condition: ')
-                end
+
+        function()
+          require('dap').set_breakpoint(vim.fn.input 'Breakpoint condition: ')
+        end
       '';
       options = {
         desc = "Debug: Set Breakpoint";
@@ -129,12 +137,12 @@
     # in case of unhandled exception.
     {
       mode = "n";
-      key = "<F7>";
+      key = "<F8>";
       action.__raw = ''
-        
-                function()
-                  require('dapui').toggle()
-                end
+
+        function()
+          require('dapui').toggle()
+        end
       '';
       options = {
         desc = "Debug: See last session result.";
@@ -144,21 +152,21 @@
 
   # https://nix-community.github.io/nixvim/NeovimOptions/index.html#extraconfiglua
   extraConfigLua = ''
-    
-        -- Change breakpoint icons
-        -- vim.api.nvim_set_hl(0, 'DapBreak', { fg = '#e51400' })
-        -- vim.api.nvim_set_hl(0, 'DapStop', { fg = '#ffcc00' })
-        -- local breakpoint_icons = vim.g.have_nerd_font
-        --     and { Breakpoint = '', BreakpointCondition = '', BreakpointRejected = '', LogPoint = '', Stopped = '' }
-        --   or { Breakpoint = '●', BreakpointCondition = '⊜', BreakpointRejected = '⊘', LogPoint = '◆', Stopped = '⭔' }
-        -- for type, icon in pairs(breakpoint_icons) do
-        --   local tp = 'Dap' .. type
-        --   local hl = (type == 'Stopped') and 'DapStop' or 'DapBreak'
-        --   vim.fn.sign_define(tp, { text = icon, texthl = hl, numhl = hl })
-        -- end
-    
-        require('dap').listeners.after.event_initialized['dapui_config'] = require('dapui').open
-        require('dap').listeners.before.event_terminated['dapui_config'] = require('dapui').close
-        require('dap').listeners.before.event_exited['dapui_config'] = require('dapui').close
+
+    -- Change breakpoint icons
+    -- vim.api.nvim_set_hl(0, 'DapBreak', { fg = '#e51400' })
+    -- vim.api.nvim_set_hl(0, 'DapStop', { fg = '#ffcc00' })
+    -- local breakpoint_icons = vim.g.have_nerd_font
+    --     and { Breakpoint = '', BreakpointCondition = '', BreakpointRejected = '', LogPoint = '', Stopped = '' }
+    --   or { Breakpoint = '●', BreakpointCondition = '⊜', BreakpointRejected = '⊘', LogPoint = '◆', Stopped = '⭔' }
+    -- for type, icon in pairs(breakpoint_icons) do
+    --   local tp = 'Dap' .. type
+    --   local hl = (type == 'Stopped') and 'DapStop' or 'DapBreak'
+    --   vim.fn.sign_define(tp, { text = icon, texthl = hl, numhl = hl })
+    -- end
+
+    require('dap').listeners.after.event_initialized['dapui_config'] = require('dapui').open
+    require('dap').listeners.before.event_terminated['dapui_config'] = require('dapui').close
+    require('dap').listeners.before.event_exited['dapui_config'] = require('dapui').close
   '';
 }
