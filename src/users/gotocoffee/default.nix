@@ -30,4 +30,16 @@ in
     "de_DE.UTF-8/UTF-8"
     "en_US.UTF-8/UTF-8"
   ];
+  # for discord
+
+  services.flatpak.enable = features.gui.enable && features.gui.gaming.enable;
+
+  xdg = lib.mkIf (features.gui.enable && features.gui.gaming.enable) {
+    portal = {
+      enable = true;
+      extraPortals = [
+        pkgs.xdg-desktop-portal-gtk
+      ];
+    };
+  };
 }

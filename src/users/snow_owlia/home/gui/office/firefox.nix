@@ -20,9 +20,28 @@ in
     profiles.default = {
       isDefault = true;
       extensions = {
+        force = true;
         packages = with inputs.firefox-addons.packages.${pkgs.stdenv.hostPlatform.system}; [
           ublock-origin
         ];
+        settings."uBlock0@raymondhill.net".settings = {
+          selectedFilterLists = [
+            "user-filters"
+            "ublock-filters"
+            "ublock-badware"
+            "ublock-privacy"
+            "ublock-quick-fixes"
+            "ublock-unbreak"
+            "easylist"
+            "easyprivacy"
+            "urlhaus-1"
+            "plowe-0"
+            "fanboy-cookiemonster"
+            "ublock-cookies-easylist"
+            "adguard-cookies"
+            "ublock-cookies-adguard"
+          ];
+        };
       };
 
       search =

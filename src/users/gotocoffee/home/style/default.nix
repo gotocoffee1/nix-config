@@ -1,8 +1,7 @@
 { pkgs, config, ... }:
 {
   stylix = {
-    #image = ../gui/wallpaper/minimal/simple-sharing-v0-27d3vwajcadd1.webp;
-    iconTheme = {
+    icons = {
       enable = true;
       package = pkgs.gruvbox-plus-icons;
       light = "Gruvbox-Plus-Light";

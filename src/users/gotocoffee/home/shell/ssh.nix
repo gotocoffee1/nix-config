@@ -6,7 +6,7 @@
   programs.ssh = {
     enable = true;
     enableDefaultConfig = false;
-    matchBlocks = {
+    settings = {
       "vm" = {
         hostname = "localhost";
         port = 2222;

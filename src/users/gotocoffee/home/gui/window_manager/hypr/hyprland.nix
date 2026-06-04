@@ -17,7 +17,7 @@ in
       {
         enable = true;
         submaps = key.submaps;
-
+        configType = "hyprlang";
         settings = {
           monitor = gui.monitor;
           workspace =
@@ -45,7 +45,9 @@ in
               clickfinger_behavior = true;
             };
           };
-
+          windowrule = [
+            "size 640 360, pin true, float true, match:title (Picture-in-Picture)"
+          ];
           exec-once = [
             "caelestia-shell -d"
           ];
