@@ -1,6 +1,7 @@
 { ... }:
 {
   imports = [
+    ./ai.nix
     ./bat.nix
     ./btop.nix
     ./direnv.nix

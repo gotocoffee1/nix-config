@@ -1,5 +1,4 @@
 {
-  pkgs,
   config,
   lib,
   ...
@@ -49,7 +48,6 @@ in
             "size 640 360, pin true, float true, match:title (Picture-in-Picture)"
           ];
           exec-once = [
-            "caelestia-shell -d"
           ];
           env = [
             "GTK_USE_PORTAL,1"

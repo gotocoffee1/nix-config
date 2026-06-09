@@ -31,8 +31,8 @@
       ];
       sharedDirectories = {
         devel = {
-          source = "/home/gotocoffee/devel";
-          target = "/home/gotocoffee/devel";
+          source = "/home/gotocoffee/Projects";
+          target = "/home/gotocoffee/Projects";
         };
       };
     };
