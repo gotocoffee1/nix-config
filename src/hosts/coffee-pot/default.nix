@@ -1,9 +1,7 @@
 {
   envFeatures = {
-    gui = {
-      monitor = [
-        "eDP-1, preferred, auto, 1"
-      ];
+    hardware = {
+      hasBattery = true;
     };
   };
   imports = [
@@ -18,6 +16,13 @@
       gotocoffee = {
         profile = "desktop";
         isMainUser = true;
+        features = {
+          hardware = {
+            monitor = [
+              "eDP-1, preferred, auto, 1"
+            ];
+          };
+        };
       };
       snow_owlia = {
         profile = "desktop";

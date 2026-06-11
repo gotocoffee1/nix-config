@@ -1,3 +1,4 @@
+features:
 {
   pkgs,
   lib,
@@ -13,10 +14,6 @@ in
   options.homeFeatures = {
     gui = {
       enable = mkEnableOption "Enable GUI" // optionalAttrs hasEnv { default = env.gui.enable; };
-      monitor = mkOption {
-        type = types.listOf types.str;
-        default = optionals hasEnv env.gui.monitor;
-      };
       gaming = {
         enable =
           mkEnableOption "Enable Gaming" // optionalAttrs hasEnv { default = env.gui.gaming.enable; };
@@ -38,9 +35,15 @@ in
         default = 2;
       };
     };
-    kb_layout = mkOption {
-      type = types.str;
-      default = if hasEnv then env.kb_layout else "de";
+    hardware = {
+      monitor = mkOption {
+        type = types.listOf types.str;
+        default = features.hardware.monitor;
+      };
+      kbLayout = mkOption {
+        type = types.str;
+        default = if hasEnv then env.hardware.kbLayout else "de";
+      };
     };
     fonts =
       let

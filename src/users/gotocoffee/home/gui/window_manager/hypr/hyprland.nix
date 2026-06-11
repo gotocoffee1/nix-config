@@ -6,6 +6,7 @@
 with lib;
 let
   gui = config.homeFeatures.gui;
+  hardware = config.homeFeatures.hardware;
 in
 {
   config = mkIf gui.enable {
@@ -18,7 +19,7 @@ in
         submaps = key.submaps;
         configType = "hyprlang";
         settings = {
-          monitor = gui.monitor;
+          monitor = hardware.monitor;
           workspace =
             let
               workspaces =
@@ -32,10 +33,10 @@ in
                 in
                 concatLists result;
             in
-            workspaces gui.monitor
+            workspaces hardware.monitor
             ++ [ "special:special, on-created-empty:kitty zellij --layout ${./special.kdl}" ];
           input = {
-            kb_layout = config.homeFeatures.kb_layout;
+            kb_layout = config.homeFeatures.hardware.kbLayout;
             kb_variant = "nodeadkeys";
             numlock_by_default = true;
             touchpad = {

@@ -5,6 +5,7 @@ let
       profile = "server";
       isMainUser = true;
       enableExtra = false;
+      features = { };
     };
   };
 in

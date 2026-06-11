@@ -30,7 +30,7 @@ in
 
   services = {
     xserver.xkb = {
-      layout = features.kb_layout;
+      layout = features.hardware.kbLayout;
       variant = "nodeadkeys";
     };
     # Enable the OpenSSH daemon.
@@ -42,5 +42,5 @@ in
       };
     };
   };
-  system.stateVersion = "25.11";
+  system.stateVersion = "26.05";
 }

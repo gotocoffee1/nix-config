@@ -9,7 +9,6 @@
       (
           address: "127.0.0.1:6600",
           password: None,
-          theme: "gruvbox",
           cache_dir: None,
           on_song_change: None,
           volume_step: 5,
@@ -21,7 +20,93 @@
           status_update_interval_ms: 1000,
           select_current_song_on_change: false,
           browser_song_sort: [Disc, Track, Artist, Title],
-      )
+          cava: (
+              input: (
+                  method: Fifo,
+                  source: "/tmp/mpd.fifo",
+                  sample_rate: 44100,
+                  channels: 2,
+                  sample_bits: 16,
+              ),
+          ),
+          tabs: [
+              (name: "Home", pane: Split(direction: Horizontal, panes: [
+                          (size: "70%", borders: "NONE", pane: Split(direction: Vertical, panes: [
+                                      (size: "3", borders: "ALL", border_symbols: Rounded , pane: Pane(QueueHeader())),
+                                      (size: "100%", borders: "ALL", border_symbols: Rounded ,pane: Pane(Queue)),
+                              ])
+
+                          ),
+                          (size: "30%", borders: "NONE", border_symbols: Rounded ,pane: Split(direction: Vertical, panes: [
+                                      (size: "0.47r", borders: "TOP | RIGHT | LEFT",
+                                          border_symbols: Rounded,
+                                          pane: Pane(AlbumArt)),
+                                      (size: "100%", borders: "ALL",
+                                          border_symbols: Rounded,
+                                          border_title: [(kind: Text("Lyrics"), style: (fg: "#81a1c1"))],
+                                          border_title_position: Top,
+                                          border_title_alignment: Right,
+                                          pane: Pane(Lyrics)),
+                                  ])
+                          ),
+
+                      ])
+              ),
+              (name: "Directories", pane: Split(direction: Horizontal,panes: [
+                          (size: "100%", borders: "ALL", border_symbols: Rounded, pane: Pane(Directories)),
+                      ])
+              ),
+              (name: "Playlists", pane: Split(direction: Horizontal, panes: [
+                          (size: "100%", borders: "ALL", border_symbols: Rounded, pane: Pane(Playlists)),
+                      ])
+              ),
+              (name: "Artists", pane: Split(direction: Horizontal, panes: [
+                          (size: "100%", borders: "ALL", border_symbols: Rounded, pane: Pane(Artists)),
+                      ])
+              ),
+              (name: "Albums", pane: Split(direction: Horizontal, panes: [
+                          (size: "100%", borders: "ALL", border_symbols: Rounded, pane: Pane(Albums)),
+                      ])
+              ),
+              (name: "Album Artists", pane: Split(direction: Horizontal, panes: [
+                          (size: "100%", borders: "ALL", border_symbols: Rounded, pane: Pane(AlbumArtists)),
+                      ])
+              ),
+              (name: "Genre", pane: Split(direction: Horizontal, panes: [
+                          (size: "100%", borders: "ALL", border_symbols: Rounded, pane: Pane(Browser(root_tag: "genre", separator: ";"))),
+                      ])
+              ),
+              (name: "Queue", pane: Split(direction: Vertical, panes: [
+                          (size: "2", borders: "TOP | RIGHT | LEFT", border_symbols: Rounded , pane: Pane(QueueHeader())),
+                          (size: "100%", borders: "ALL", border_symbols: Rounded,
+                                          border_title: [(kind: Property(Song(File)), style: (fg: "#4c566a"))],
+                                          border_title_position: Bottom,
+                                          border_title_alignment: Right,
+                                          pane: Pane(Queue)),
+                              ])
+
+              ),
+              (name: "Show",pane: Split(direction: Vertical, panes: [
+                          (size: "50%", pane: Split(direction: Horizontal, panes: [
+                                      (size: "39%", borders: "ALL", border_symbols: Rounded, pane: Pane(Queue)),
+                                      (size: "22%", borders: "ALL", border_symbols: Rounded, pane: Pane(AlbumArt)),
+                                      (size: "39%", borders: "ALL",
+                                           border_title: [(kind: Text("Lyrics"), style: (fg: "#81a1c1"))],
+                                           border_title_position: Top,
+                                           border_title_alignment: Right,
+                                           border_symbols: Rounded,
+                                          pane: Pane(Lyrics)),
+                                  ])
+                          ),
+                          (size: "50%", borders: "ALL", border_symbols: Rounded, pane: Pane(Cava)),
+                      ])
+              ),
+              (name: "Search", pane: Split(direction: Horizontal, panes: [
+                          (size: "100%", borders: "ALL", border_symbols: Rounded, pane: Pane(Search)),
+                      ])
+              ),
+          ], 
+          )
     '';
   };
 }

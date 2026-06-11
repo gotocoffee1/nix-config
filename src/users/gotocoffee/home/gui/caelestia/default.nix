@@ -1,5 +1,6 @@
 {
   config,
+  osConfig,
   inputs,
   pkgs,
   lib,
@@ -30,11 +31,13 @@ in
       settings = {
         appearance = {
           font = {
-            family = {
-              clock = fonts.sans.name;
-              mono = fonts.mono.name;
-              sans = fonts.sans.name;
-            };
+            clock = fonts.sans.name;
+            workspaces = fonts.sans.name;
+            mono.family = fonts.mono.name;
+            label.family = fonts.sans.name;
+            body.family = fonts.sans.name;
+            title.family = fonts.sans.name;
+            headline.family = fonts.sans.name;
           };
           transparency = {
             enabled = true;
@@ -71,7 +74,7 @@ in
           };
           status = {
             showAudio = true;
-            showBattery = false;
+            showBattery = osConfig.envFeatures.hardware.hasBattery;
             showMicrophone = true;
             showLockStatus = false;
           };

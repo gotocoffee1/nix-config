@@ -11,6 +11,7 @@
         profile = "devel";
         isMainUser = true;
         enableExtra = false;
+        features = { };
       };
     })
   ];

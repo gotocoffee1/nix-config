@@ -9,6 +9,7 @@ let
       profile = "server";
       isMainUser = true;
       enableExtra = false;
+      features = { };
     };
     snow_owlia = {
       profile = "server";

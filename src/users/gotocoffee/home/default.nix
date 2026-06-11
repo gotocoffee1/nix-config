@@ -1,5 +1,5 @@
-{ profile, ... }:
-{ lib, ... }:
+{ profile, features, ... }:
+{ lib, config, ... }:
 let
   isDesktop = profile == "desktop";
   isServer = profile == "server";
@@ -7,7 +7,7 @@ in
 {
   home.stateVersion = "26.05";
   imports = [
-    ./features.nix
+    (import ./features.nix features)
     ./style
   ]
   ++ lib.optionals (isDesktop || profile == "devel") [

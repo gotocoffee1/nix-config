@@ -4,10 +4,6 @@ with lib;
   options.envFeatures = {
     gui = {
       enable = mkEnableOption "Enable GUI";
-      monitor = mkOption {
-        type = types.listOf types.str;
-        default = [ ];
-      };
       gaming = {
         enable = mkEnableOption "Enable Gaming";
       };
@@ -17,10 +13,11 @@ with lib;
     };
     hardware = {
       isVirtual = mkEnableOption "Is virtual enviroment";
-    };
-    kb_layout = mkOption {
-      type = types.str;
-      default = "de";
+      hasBattery = mkEnableOption "Device has battery";
+      kbLayout = mkOption {
+        type = types.str;
+        default = "de";
+      };
     };
     fonts =
       let
