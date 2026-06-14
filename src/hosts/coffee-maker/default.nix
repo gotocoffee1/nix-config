@@ -17,8 +17,18 @@
         isMainUser = true;
         features = {
           hardware.monitor = [
-            "HDMI-A-1, 2560x1440@143.91, 0x0, 1"
-            "DP-2, 1920x1080, 2560x200, 1"
+            {
+              output = "HDMI-A-1";
+              mode = "2560x1440@143.91";
+              position = "0x0";
+              scale = 1;
+            }
+            {
+              output = "DP-2";
+              mode = "1920x1080";
+              position = "2560x200";
+              scale = 1;
+            }
           ];
         };
       };

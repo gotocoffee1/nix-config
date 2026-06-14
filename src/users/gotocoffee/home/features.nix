@@ -37,7 +37,7 @@ in
     };
     hardware = {
       monitor = mkOption {
-        type = types.listOf types.str;
+        type = types.listOf types.attrs;
         default = features.hardware.monitor;
       };
       kbLayout = mkOption {
