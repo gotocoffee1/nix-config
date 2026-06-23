@@ -9,17 +9,11 @@ let
 in
 {
   imports = [
-    #./app_launcher/fuzzel.nix
-    #./bar/waybar.nix
     #./cursor/cursor.nix
     ./caelestia
     ./gaming
-    #./notification/dunst.nix
     ./office
     ./terminal/kitty.nix
-    #./wallpaper/wpaperd.nix
-    #./window_manager/sway/sway.nix
-    ./window_manager/hypr
   ];
 
   xdg = lib.mkIf gui.enable {

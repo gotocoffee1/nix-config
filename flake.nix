@@ -36,68 +36,12 @@
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-  };
-  outputs =
-    {
-      self,
-      nixpkgs,
-      home-manager,
-      disko,
-      stylix,
-      nixvim,
-      caelestia,
-      sops-nix,
-      ...
-    }@inputs:
-    {
-      devShells =
-        let
-          system = "x86_64-linux";
-        in
-        {
-          ${system} = {
-            default =
-              let
-                pkgs = import nixpkgs { inherit system; };
-              in
-              import ./shell.nix { inherit pkgs; };
-          };
-        };
-      nixosConfigurations =
-        let
-          modules = [
-            home-manager.nixosModules.home-manager
-            stylix.nixosModules.stylix
-            sops-nix.nixosModules.sops
-            disko.nixosModules.disko
-            {
-              home-manager.sharedModules = [
-                nixvim.homeModules.nixvim
-                caelestia.homeManagerModules.default
-                sops-nix.homeManagerModules.sops
-              ];
-              home-manager.extraSpecialArgs = { inherit inputs; };
-            }
-          ];
-
-          makeOS = name: {
-            ${name} = nixpkgs.lib.nixosSystem {
-              modules = modules ++ [
-                ./src/hosts/${name}
-                {
-                  networking.hostName = name;
-                }
-              ];
-            };
-          };
-        in
-        { }
-        // makeOS "coffee-maker"
-        // makeOS "coffee-pot"
-        // makeOS "coffee-bean"
-        // makeOS "coffee-server"
-        // makeOS "coffee-grinder"
-        // makeOS "coffee-grounds"
-        // { };
+    flake-parts = {
+      url = "github:hercules-ci/flake-parts";
+      inputs.nixpkgs-lib.follows = "nixpkgs";
     };
+    den.url = "github:denful/den";
+    import-tree.url = "github:denful/import-tree";
+  };
+  outputs = inputs: inputs.flake-parts.lib.mkFlake { inherit inputs; } (inputs.import-tree ./modules);
 }

@@ -21,7 +21,6 @@ in
   };
 
   programs = {
-    hyprland.enable = features.gui.enable;
     steam.enable = features.gui.enable && features.gui.gaming.enable;
     fish.enable = true;
   };

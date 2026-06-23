@@ -4,7 +4,6 @@ let
   isDesktop = profile == "desktop";
 in
 {
-  home.stateVersion = "26.05";
   imports = [
     ./features.nix
     ./style

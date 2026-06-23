@@ -5,7 +5,6 @@ let
   isServer = profile == "server";
 in
 {
-  home.stateVersion = "26.05";
   imports = [
     (import ./features.nix features)
     ./style
