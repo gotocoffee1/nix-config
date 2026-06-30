@@ -9,7 +9,6 @@ in
     ./style
   ]
   ++ lib.optionals (isDesktop) [
-    ./shell
     ./gui
   ];
   home.file.".face".source = ./face.png;

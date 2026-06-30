@@ -11,7 +11,6 @@ in
 {
   users.users.gotocoffee = {
     uid = 1000;
-    shell = pkgs.fish;
     extraGroups = [
       "networkmanager"
     ]
@@ -22,7 +21,6 @@ in
 
   programs = {
     steam.enable = features.gui.enable && features.gui.gaming.enable;
-    fish.enable = true;
   };
   # Select internationalisation properties.
   i18n.extraLocales = [

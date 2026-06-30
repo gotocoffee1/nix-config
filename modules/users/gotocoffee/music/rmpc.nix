@@ -1,6 +1,5 @@
-{ ... }:
 {
-  programs.rmpc = {
+  gtc.music.homeManager.programs.rmpc = {
     enable = true;
     config = ''
       #![enable(implicit_some)]

@@ -11,6 +11,7 @@
     includes = [
       den.batteries.define-user
       den.batteries.primary-user
+      (den.batteries.user-shell "fish")
     ];
     homeManager = { pkgs, ... }: {
 
@@ -18,6 +19,9 @@
     provides.coffee-maker = {
       includes = [
         gtc.hyprland
+        gtc.music
+        gtc.neovim
+        gtc.shell
       ];
     };
   };

@@ -6,7 +6,7 @@
 
       };
     };
-    homeManger =
+    homeManager =
       {
         config,
         lib,

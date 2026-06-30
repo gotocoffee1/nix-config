@@ -10,8 +10,6 @@ in
     ./style
   ]
   ++ lib.optionals (isDesktop || profile == "devel") [
-    ./editor
-    ./shell
     ./tools
     ./vcs
   ]
@@ -20,7 +18,6 @@ in
   ]
   ++ lib.optionals isDesktop [
     ./gui
-    ./music
   ];
   xdg.userDirs = lib.mkIf isDesktop {
     enable = true;
