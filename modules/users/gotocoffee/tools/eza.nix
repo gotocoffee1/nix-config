@@ -1,5 +1,5 @@
 {
-  programs.eza = {
+  gtc.tools.homeManager.programs.eza = {
     enable = true;
     colors = "auto";
     git = true;

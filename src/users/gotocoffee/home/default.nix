@@ -10,11 +10,11 @@ in
     ./style
   ]
   ++ lib.optionals (isDesktop || profile == "devel") [
-    ./tools
-    ./vcs
+    #./tools
+    #./vcs
   ]
   ++ lib.optionals isServer [
-    ./tools/btop.nix
+    #./tools/btop.nix
   ]
   ++ lib.optionals isDesktop [
     ./gui

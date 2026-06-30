@@ -1,5 +1,5 @@
 {
-  programs.qalculate = {
+  gtc.tools.homeManager.programs.qalculate = {
     enable = true;
     settings = {
       Mode = {

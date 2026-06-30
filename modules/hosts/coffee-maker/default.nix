@@ -22,6 +22,8 @@
         gtc.music
         gtc.neovim
         gtc.shell
+        gtc.tools
+        gtc.vcs
       ];
     };
   };

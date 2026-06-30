@@ -1,5 +1,5 @@
 {
-  programs.aichat = {
+  gtc.tools.homeManager.programs.aichat = {
     enable = true;
     settings = {
       model = "mistral:mistral-medium-latest";
