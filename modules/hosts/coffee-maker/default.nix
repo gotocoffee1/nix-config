@@ -34,6 +34,8 @@
         gtc.gaming
         gtc.office
         gtc.style
+        gtc.core
+        gtc.locale
       ];
     };
     includes = [
