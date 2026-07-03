@@ -4,10 +4,13 @@
   ...
 }:
 {
-  den.hosts.x86_64-linux.coffee-maker.users.gotocoffee = {
-
+  den.schema.user = { lib, ... }: {
+    options.isPrimary = lib.mkEnableOption "is primary user";
   };
-  den.aspects.gotocoffee = {
+  den.hosts.x86_64-linux.coffee-maker.users.gotocoffee = {
+    isPrimary = true;
+  };
+  den.aspects.gotocoffee = { ... }: {
     includes = [
       den.batteries.define-user
       den.batteries.primary-user
@@ -16,7 +19,10 @@
     homeManager = { pkgs, ... }: {
 
     };
-    provides.coffee-maker = {
+
+  };
+  den.aspects.coffee-maker = {
+    provides.gotocoffee = {
       includes = [
         gtc.hyprland
         gtc.music
@@ -24,10 +30,12 @@
         gtc.shell
         gtc.tools
         gtc.vcs
+        gtc.gui
+        gtc.gaming
+        gtc.office
+        gtc.style
       ];
     };
-  };
-  den.aspects.coffee-maker = {
     includes = [
       den.aspects.common
       den.aspects.core

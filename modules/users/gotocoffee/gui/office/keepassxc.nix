@@ -1,10 +1,6 @@
-{ config, ... }:
-let
-  gui = config.homeFeatures.gui;
-in
 {
-  programs.keepassxc = {
-    enable = gui.enable;
+  gtc.office.homeManager.programs.keepassxc = {
+    enable = true;
     settings = {
       GUI = {
         ApplicationTheme = "dark";

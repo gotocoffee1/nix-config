@@ -1,10 +1,6 @@
-{ config, ... }:
-let
-  gui = config.homeFeatures.gui;
-in
 {
-  programs.kitty = {
-    enable = gui.enable;
+  gtc.gui.homeManager.programs.kitty = {
+    enable = true;
     settings = {
       cursor_trail = 1;
     };

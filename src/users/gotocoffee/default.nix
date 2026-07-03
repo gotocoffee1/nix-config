@@ -19,9 +19,6 @@ in
     openssh.authorizedKeys.keyFiles = lib.optional features.ssh.enable ./keys/id_ed25519.pub;
   };
 
-  programs = {
-    steam.enable = features.gui.enable && features.gui.gaming.enable;
-  };
   # Select internationalisation properties.
   i18n.extraLocales = [
     "de_DE.UTF-8/UTF-8"

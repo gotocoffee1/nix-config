@@ -7,7 +7,6 @@ in
 {
   imports = [
     (import ./features.nix features)
-    ./style
   ]
   ++ lib.optionals (isDesktop || profile == "devel") [
     #./tools
@@ -17,7 +16,7 @@ in
     #./tools/btop.nix
   ]
   ++ lib.optionals isDesktop [
-    ./gui
+    #./gui
   ];
   xdg.userDirs = lib.mkIf isDesktop {
     enable = true;
