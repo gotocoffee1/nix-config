@@ -18,8 +18,4 @@ in
   ++ lib.optionals isDesktop [
     #./gui
   ];
-  xdg.userDirs = lib.mkIf isDesktop {
-    enable = true;
-    createDirectories = true;
-  };
 }

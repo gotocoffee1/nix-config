@@ -40,7 +40,7 @@
       url = "github:hercules-ci/flake-parts";
       inputs.nixpkgs-lib.follows = "nixpkgs";
     };
-    den.url = "github:denful/den";
+    den.url = "github:denful/den/v0.18.0";
     import-tree.url = "github:denful/import-tree";
   };
   outputs = inputs: inputs.flake-parts.lib.mkFlake { inherit inputs; } (inputs.import-tree ./modules);

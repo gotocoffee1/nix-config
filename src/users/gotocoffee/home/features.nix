@@ -13,11 +13,6 @@ in
 {
   options.homeFeatures = {
     gui = {
-      enable = mkEnableOption "Enable GUI" // optionalAttrs hasEnv { default = env.gui.enable; };
-      gaming = {
-        enable =
-          mkEnableOption "Enable Gaming" // optionalAttrs hasEnv { default = env.gui.gaming.enable; };
-      };
       rounding = mkOption {
         type = types.ints.unsigned;
         default = 12;

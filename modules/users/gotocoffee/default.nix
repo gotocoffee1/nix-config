@@ -1,16 +1,40 @@
-{ inputs, ... }:
+{
+  inputs,
+  den,
+  gtc,
+  ...
+}:
 {
   imports = [ (inputs.den.namespace "gtc" false) ];
+  den.aspects.gotocoffee = { ... }: {
+    includes = [
+      gtc.core
+      gtc.locale
+      gtc.ssh
+    ];
+  };
+  gtc.ssh = {
+    user = {
+      openssh.authorizedKeys.keyFiles = [ ./keys/id_ed25519.pub ];
+    };
+    nixos = {
+      # Enable the OpenSSH daemon.
+      services.openssh.enable = true;
+    };
+  };
   gtc.core =
     { user, ... }:
     {
+      includes = [
+        den.batteries.define-user
+        (den.batteries.user-shell "fish")
+      ];
       user = { lib, ... }: {
         uid = 1000;
         extraGroups = [
           "networkmanager"
         ]
         ++ lib.optional user.isPrimary "wheel";
-        openssh.authorizedKeys.keyFiles = [ ./keys/id_ed25519.pub ];
       };
 
     };

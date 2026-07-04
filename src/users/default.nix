@@ -34,7 +34,6 @@ in
           ++ (lib.optionals (!(cfg ? enableExtra) || cfg.enableExtra) (
             optionalImport ../extra/users/${name} cfg
           ))
-          ++ (lib.optionals (cfg ? isMainUser && cfg.isMainUser) (optionalImport ./${name}/main.nix cfg))
         ) users
       )
     )

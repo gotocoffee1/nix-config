@@ -62,9 +62,7 @@
             layout = features.hardware.kbLayout;
             variant = "nodeadkeys";
           };
-          # Enable the OpenSSH daemon.
           openssh = {
-            enable = features.ssh.enable;
             settings = {
               PasswordAuthentication = false;
               KbdInteractiveAuthentication = false;

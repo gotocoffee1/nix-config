@@ -29,5 +29,12 @@
       # for pipewire
       security.rtkit.enable = true;
     };
+
+    provides.to-users.homeManager = {
+      xdg.userDirs = {
+        enable = true;
+        createDirectories = true;
+      };
+    };
   };
 }

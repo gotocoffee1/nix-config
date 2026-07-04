@@ -7,19 +7,15 @@
   den.schema.user = { lib, ... }: {
     options.isPrimary = lib.mkEnableOption "is primary user";
   };
-  den.hosts.x86_64-linux.coffee-maker.users.gotocoffee = {
-    isPrimary = true;
-  };
   den.aspects.gotocoffee = { ... }: {
     includes = [
-      den.batteries.define-user
-      den.batteries.primary-user
-      (den.batteries.user-shell "fish")
+      gtc.core
+      gtc.locale
+      gtc.ssh
     ];
-    homeManager = { pkgs, ... }: {
-
-    };
-
+  };
+  den.hosts.x86_64-linux.coffee-maker.users.gotocoffee = {
+    isPrimary = true;
   };
   den.aspects.coffee-maker = {
     provides.gotocoffee = {
@@ -34,8 +30,6 @@
         gtc.gaming
         gtc.office
         gtc.style
-        gtc.core
-        gtc.locale
       ];
     };
     includes = [
@@ -45,7 +39,7 @@
     ];
     nixos = { lib, config, ... }: {
       imports = [
-        ../../../src/hosts/coffee-maker/hardware-configuration.nix
+        ./_hardware-configuration.nix
       ]
       ++ [
         (import ../../../src/users {
