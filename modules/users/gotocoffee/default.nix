@@ -50,8 +50,8 @@
         {
           i18n = {
             extraLocales = [
-              "de_DE.UTF-8/UTF-8"
-              "en_US.UTF-8/UTF-8"
+              "${defaultLocale}/UTF-8"
+              "${locale}/UTF-8"
             ];
           }
           // lib.mkIf user.isPrimary {
