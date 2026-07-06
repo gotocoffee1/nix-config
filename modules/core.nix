@@ -25,10 +25,7 @@
       home.stateVersion = "26.05";
     };
   };
-  den.aspects.core = {
-    includes = [
-      den.aspects.features
-    ];
+  den.aspects.core = { host, ... }: {
     nixos =
       {
         lib,
@@ -37,7 +34,7 @@
         ...
       }:
       let
-        features = config.envFeatures;
+        hardware = host.hardware;
       in
       {
         nix.settings = {
@@ -59,7 +56,7 @@
 
         services = {
           xserver.xkb = {
-            layout = features.hardware.kbLayout;
+            layout = hardware.kbLayout;
             variant = "nodeadkeys";
           };
           openssh = {

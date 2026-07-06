@@ -6,7 +6,6 @@ let
 in
 {
   imports = [
-    (import ./features.nix features)
   ]
   ++ lib.optionals (isDesktop || profile == "devel") [
     #./tools

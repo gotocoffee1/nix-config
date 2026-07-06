@@ -4,9 +4,66 @@
   ...
 }:
 {
-  den.schema.user = { lib, ... }: {
-    options.isPrimary = lib.mkEnableOption "is primary user";
-  };
+  den.schema.user = { lib, ... }: with lib;
+    {
+      options = {
+        isPrimary = mkEnableOption "is primary user";
+        gui = {
+          terminal = mkOption {
+            type = types.str;
+            default = "kitty";
+          };
+          explorer = mkOption {
+            type = types.str;
+            default = "yazi";
+          };
+          rounding = mkOption {
+            type = types.ints.unsigned;
+            default = 12;
+          };
+          border = mkOption {
+            type = types.ints.unsigned;
+            default = 2;
+          };
+        };
+        fonts =
+          let
+            mkFont = name: package: {
+              name = mkOption {
+                type = types.str;
+                default = name;
+              };
+              package = mkOption {
+                type = types.package;
+                default = package;
+              };
+            };
+          in
+          {
+            serif = mkFont "DejaVu Serif" pkgs.dejavu_fonts;
+            sans = mkFont "DejaVu Sans" pkgs.dejavu_fonts;
+            mono = mkFont "FiraCode Nerd Font" pkgs.nerd-fonts.fira-code;
+            emoji = mkFont "Noto Color Emoji" pkgs.noto-fonts-color-emoji;
+          };
+      };
+    };
+
+  den.schema.host = { lib, ... }: with lib;
+    {
+      options = {
+        hardware = {
+          monitor = mkOption {
+            type = types.listOf types.str;
+          };
+          kbLayout = mkOption {
+            type = types.str;
+            default = "de";
+          };
+          isVirtual = mkEnableOption "Is virtual enviroment";
+          hasBattery = mkEnableOption "Device has battery";
+        };
+      };
+    };
   den.aspects.gotocoffee = { ... }: {
     includes = [
       gtc.core
@@ -37,6 +94,10 @@
       den.aspects.core
       den.aspects.desktop
     ];
+    hardware.monitor = [
+      "HDMI-A-1, 2560x1440@143.91, 0x0, 1"
+      "DP-2, 1920x1080, 2560x200, 1"
+    ];
     nixos = { lib, config, ... }: {
       imports = [
         ./_hardware-configuration.nix
@@ -47,20 +108,11 @@
             profile = "desktop";
             isMainUser = true;
             features = {
-              hardware.monitor = [
-                "HDMI-A-1, 2560x1440@143.91, 0x0, 1"
-                "DP-2, 1920x1080, 2560x200, 1"
-              ];
             };
           };
         })
       ];
 
-      envFeatures = {
-        gui = {
-          gaming.enable = true;
-        };
-      };
       networking.hostId = "a91287a0";
       boot.supportedFilesystems = [ "zfs" ];
       boot.zfs.forceImportRoot = false;

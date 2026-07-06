@@ -3,18 +3,14 @@
   den.aspects.greeter = {
     nixos =
       {
-        config,
         lib,
         pkgs,
         ...
       }:
-      let
-        features = config.envFeatures;
-      in
       {
         services = {
           greetd = {
-            enable = features.gui.enable;
+            enable = true;
             useTextGreeter = true;
             settings = {
               default_session = {

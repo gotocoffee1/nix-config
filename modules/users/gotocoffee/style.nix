@@ -3,7 +3,22 @@
     { user, ... }:
     let
       style =
-        { pkgs, fonts, ... }:
+        { pkgs, ... }:
+        let
+          fonts =
+            let
+              mkFont = name: package: {
+                name = name;
+                package = package;
+              };
+            in
+            {
+              serif = mkFont "DejaVu Serif" pkgs.dejavu_fonts;
+              sans = mkFont "DejaVu Sans" pkgs.dejavu_fonts;
+              mono = mkFont "FiraCode Nerd Font" pkgs.nerd-fonts.fira-code;
+              emoji = mkFont "Noto Color Emoji" pkgs.noto-fonts-color-emoji;
+            };
+        in
         {
           enable = true;
           overlays.enable = false; # #1832
@@ -34,7 +49,6 @@
           stylix = {
           }
           // (style {
-            fonts = config.envFeatures.fonts;
             inherit pkgs;
           });
         };
@@ -66,7 +80,6 @@
             };
           }
           // (style {
-            fonts = config.homeFeatures.fonts;
             inherit pkgs;
           });
         };

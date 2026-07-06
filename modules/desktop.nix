@@ -7,19 +7,6 @@
       den.aspects.printer_scanner
     ];
     nixos = {
-
-      envFeatures = {
-        gui.enable = true;
-        ssh.enable = true;
-      };
-      #
-      # specialisation = {
-      #   headless.configuration = {
-      #     imports = [
-      #       ./specialisations/headless.nix
-      #     ];
-      #   };
-      # };
       services = {
         kmscon = {
           enable = true;

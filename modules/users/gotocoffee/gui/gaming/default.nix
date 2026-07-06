@@ -1,18 +1,18 @@
 {
   gtc.gaming = {
-    nixos = {
+    nixos = { pkgs, ... }: {
       programs = {
         steam.enable = true;
       };
-      # services.flatpak.enable = true;
-      # xdg = {
-      #   portal = {
-      #     enable = true;
-      #     extraPortals = [
-      #       pkgs.xdg-desktop-portal-gtk
-      #     ];
-      #   };
-      # };
+      services.flatpak.enable = true;
+      xdg = {
+        portal = {
+          enable = true;
+          extraPortals = [
+            pkgs.xdg-desktop-portal-gtk
+          ];
+        };
+      };
     };
     homeManager =
       { pkgs, ... }:

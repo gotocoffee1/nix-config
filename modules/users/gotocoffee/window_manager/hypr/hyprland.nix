@@ -1,5 +1,5 @@
 {
-  gtc.hyprland = {
+  gtc.hyprland = { user, host, ... }: {
     nixos = {
       programs = {
         hyprland.enable = true;
@@ -14,8 +14,8 @@
       }:
       with lib;
       let
-        gui = config.homeFeatures.gui;
-        hardware = config.homeFeatures.hardware;
+        gui = user.gui;
+        hardware = host.hardware;
       in
       {
         services.hyprsunset = {
@@ -48,7 +48,7 @@
                 workspaces hardware.monitor
                 ++ [ "special:special, on-created-empty:kitty zellij --layout ${./special.kdl}" ];
               input = {
-                kb_layout = config.homeFeatures.hardware.kbLayout;
+                kb_layout = hardware.kbLayout;
                 kb_variant = "nodeadkeys";
                 numlock_by_default = true;
                 touchpad = {
