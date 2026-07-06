@@ -44,6 +44,9 @@
           ];
           trusted-users = [ "@wheel" ];
         };
+
+        users.mutableUsers = false;
+
         networking = {
           networkmanager.enable = true;
           firewall.allowedTCPPorts = [ ];

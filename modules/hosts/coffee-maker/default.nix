@@ -71,8 +71,15 @@
       gtc.ssh
     ];
   };
-  den.hosts.x86_64-linux.coffee-maker.users.gotocoffee = {
-    isPrimary = true;
+  den.hosts.x86_64-linux.coffee-maker = {
+    hardware.monitor = [
+      "HDMI-A-1, 2560x1440@143.91, 0x0, 1"
+      "DP-2, 1920x1080, 2560x200, 1"
+    ];
+
+    users.gotocoffee = {
+      isPrimary = true;
+    };
   };
   den.aspects.coffee-maker = {
     provides.gotocoffee = {
@@ -93,10 +100,6 @@
       den.aspects.common
       den.aspects.core
       den.aspects.desktop
-    ];
-    hardware.monitor = [
-      "HDMI-A-1, 2560x1440@143.91, 0x0, 1"
-      "DP-2, 1920x1080, 2560x200, 1"
     ];
     nixos = { lib, config, ... }: {
       imports = [
