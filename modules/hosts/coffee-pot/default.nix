@@ -5,11 +5,19 @@
   ...
 }:
 {
-  den.hosts.x86_64-linux.coffee-pot.users = {
-    gotocoffee = {
-      isPrimary = true;
+  den.hosts.x86_64-linux.coffee-pot = {
+    hardware = {
+      hasBattery = true;
+      monitor = [
+        "eDP-1, preferred, auto, 1"
+      ];
     };
-    snow_owlia = { };
+    users = {
+      gotocoffee = {
+        isPrimary = true;
+      };
+      snow_owlia = { };
+    };
   };
   den.aspects.coffee-pot = {
     provides.gotocoffee = {
@@ -37,31 +45,10 @@
       den.aspects.core
       den.aspects.desktop
     ];
-    hardware = {
-      hasBattery = true;
-      monitor = [
-        "eDP-1, preferred, auto, 1"
-      ];
-    };
     nixos = {
       imports = [
         ./_disko.nix
         ./_hardware-configuration.nix
-      ]
-      ++ [
-        (import ../../../src/users {
-          gotocoffee = {
-            profile = "desktop";
-            isMainUser = true;
-            features = {
-              hardware = {
-              };
-            };
-          };
-          snow_owlia = {
-            profile = "desktop";
-          };
-        })
       ];
     };
   };

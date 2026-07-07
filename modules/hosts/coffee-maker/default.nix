@@ -104,16 +104,6 @@
     nixos = { lib, config, ... }: {
       imports = [
         ./_hardware-configuration.nix
-      ]
-      ++ [
-        (import ../../../src/users {
-          gotocoffee = {
-            profile = "desktop";
-            isMainUser = true;
-            features = {
-            };
-          };
-        })
       ];
 
       networking.hostId = "a91287a0";
