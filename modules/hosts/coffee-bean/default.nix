@@ -4,7 +4,9 @@
 }:
 {
   den.hosts.x86_64-linux.coffee-bean.users = {
-    gotocoffee = { };
+    gotocoffee = {
+      isPrimary = true;
+    };
   };
   den.aspects.coffee-bean = {
     includes = [
@@ -16,15 +18,6 @@
       imports = [
         ./_disko.nix
         ./_hardware-configuration.nix
-      ]
-      ++ [
-        (import ../../users {
-          gotocoffee = {
-            profile = "desktop";
-            isMainUser = true;
-            features = { };
-          };
-        })
       ];
     };
   };

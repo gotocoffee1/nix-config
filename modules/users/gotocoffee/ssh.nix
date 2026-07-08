@@ -1,5 +1,5 @@
 {
-  gtc.shell.homeManager = {
+  gtc.ssh-client.homeManager = {
     services.ssh-agent = {
       enable = true;
     };
@@ -17,6 +17,15 @@
           addKeysToAgent = "yes";
         };
       };
+    };
+  };
+  gtc.ssh = {
+    user = {
+      openssh.authorizedKeys.keyFiles = [ ./keys/id_ed25519.pub ];
+    };
+    nixos = {
+      # Enable the OpenSSH daemon.
+      services.openssh.enable = true;
     };
   };
 }

@@ -2,7 +2,6 @@
 {
   den.aspects.desktop = {
     includes = [
-      den.aspects.greeter
       den.aspects.bluetooth
       den.aspects.printer_scanner
     ];
@@ -23,5 +22,11 @@
         createDirectories = true;
       };
     };
+  };
+  den.aspects.gui-desktop = {
+    includes = [
+      den.aspects.desktop
+      den.aspects.greeter
+    ];
   };
 }

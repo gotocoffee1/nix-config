@@ -1,6 +1,5 @@
-{ den, lib, ... }:
+{ den, ... }:
 {
-  den.schema.user.classes = lib.mkDefault [ "homeManager" ];
   den.aspects.common = {
     nixos =
       {
@@ -10,11 +9,6 @@
         ...
       }:
       {
-        home-manager = {
-          useUserPackages = true;
-          useGlobalPkgs = true;
-          backupFileExtension = "backup";
-        };
         # Bootloader.
         boot.loader = {
           systemd-boot.enable = true;
@@ -26,17 +20,7 @@
 
         programs = {
           nix-ld.enable = true;
-          direnv.enable = true;
-          dconf.enable = true; # https://github.com/danth/stylix/issues/139
         };
-
-        services = {
-          kmscon = {
-            enable = true;
-            useXkbConfig = true;
-          };
-        };
-
       };
   };
 }

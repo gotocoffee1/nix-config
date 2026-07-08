@@ -1,5 +1,5 @@
 {
-  gtc.neovim.homeManager =
+  gtc.tools.nvim.homeManager =
     { pkgs, ... }:
     let
       enable_nerd_fonts = true;

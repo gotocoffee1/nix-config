@@ -1,5 +1,5 @@
 {
-  gtc.vcs.homeManager = {
+  gtc.tools.vcs.homeManager = {
     programs.git = {
       enable = true;
       settings = {

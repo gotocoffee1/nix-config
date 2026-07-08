@@ -1,5 +1,5 @@
 {
-  gtc.neovim.homeManager.programs.nixvim = {
+  gtc.tools.nvim.homeManager.programs.nixvim = {
     #  See `:help 'clipboard'`
     clipboard = {
       providers = {

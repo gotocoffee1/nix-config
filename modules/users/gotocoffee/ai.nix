@@ -1,5 +1,5 @@
 {
-  gtc.tools.homeManager.programs.aichat = {
+  gtc.aichat.homeManager.programs.aichat = {
     enable = true;
     settings = {
       model = "mistral:mistral-medium-latest";
@@ -11,5 +11,9 @@
         }
       ];
     };
+  };
+
+  gtc.aider.homeManager.programs.aider-chat = {
+    enable = true;
   };
 }

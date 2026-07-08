@@ -1,5 +1,5 @@
 {
-  gtc.office.homeManager.programs.keepassxc = {
+  gtc.keepass.homeManager.programs.keepassxc = {
     enable = true;
     settings = {
       GUI = {

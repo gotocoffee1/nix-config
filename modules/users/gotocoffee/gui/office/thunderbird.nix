@@ -1,5 +1,5 @@
 {
-  gtc.office.homeManager.programs.thunderbird = {
+  gtc.thunderbird.homeManager.programs.thunderbird = {
     enable = true;
     settings = {
     };

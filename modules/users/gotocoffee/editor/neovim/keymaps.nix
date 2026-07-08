@@ -1,5 +1,5 @@
 {
-  gtc.neovim.homeManager.programs.nixvim = {
+  gtc.tools.nvim.homeManager.programs.nixvim = {
     # [[ Basic Keymaps ]]
     #  See `:help vim.keymap.set()`
     # https://nix-community.github.io/nixvim/keymaps/index.html

@@ -46,6 +46,7 @@
           ...
         }:
         lib.mkIf user.isPrimary {
+          programs.dconf.enable = true; # https://github.com/danth/stylix/issues/139
           stylix = {
           }
           // (style {

@@ -20,30 +20,18 @@
     };
   };
   den.aspects.coffee-pot = {
-    provides.gotocoffee = {
-      includes = [
-        gtc.hyprland
-        gtc.music
-        gtc.neovim
-        gtc.shell
-        gtc.tools
-        gtc.vcs
-        gtc.gui
-        gtc.office
-        gtc.style
-      ];
-    };
-    provides.snow_owlia = {
-      includes = [
-        so.office
-        so.plasma
-        so.style
-      ];
-    };
+    provides.gotocoffee.includes = [
+      gtc.gui-desktop
+    ];
+
+    provides.snow_owlia.includes = [
+      so.gui-desktop
+    ];
+
     includes = [
       den.aspects.common
       den.aspects.core
-      den.aspects.desktop
+      den.aspects.gui-desktop
     ];
     nixos = {
       imports = [
