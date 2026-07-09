@@ -1,92 +1,43 @@
-{ den, inputs, ... }:
 {
-  den.default = {
-    includes = [
-      den.batteries.hostname
-    ];
-    nixos = {
-      imports = with inputs; [
-        home-manager.nixosModules.home-manager
-        stylix.nixosModules.stylix
-        sops-nix.nixosModules.sops
-        disko.nixosModules.disko
-        {
-          home-manager.sharedModules = [
-            nixvim.homeModules.nixvim
-            caelestia.homeManagerModules.default
-            sops-nix.homeManagerModules.sops
-          ];
-          home-manager.extraSpecialArgs = { inherit inputs; };
-        }
-      ];
-      system.stateVersion = "26.05";
-    };
-    homeManager = {
-      home.stateVersion = "26.05";
-    };
-  };
-  den.schema.user = { lib, ... }: with lib;
+  den,
+  inputs,
+  role,
+  ...
+}:
+{
+  imports = [ (inputs.den.namespace "role" false) ];
+  den.default =
+    let
+      stateVersion = "26.05";
+    in
     {
-      config.classes = lib.mkDefault [ "homeManager" ];
-      options = {
-        isPrimary = mkEnableOption "is primary user";
-        gui = {
-          terminal = mkOption {
-            type = types.str;
-            default = "kitty";
-          };
-          explorer = mkOption {
-            type = types.str;
-            default = "yazi";
-          };
-          rounding = mkOption {
-            type = types.ints.unsigned;
-            default = 12;
-          };
-          border = mkOption {
-            type = types.ints.unsigned;
-            default = 2;
-          };
-        };
-        fonts =
-          let
-            mkFont = name: package: {
-              name = mkOption {
-                type = types.str;
-                default = name;
-              };
-              package = mkOption {
-                type = types.package;
-                default = package;
-              };
-            };
-          in
+      includes = [
+        den.batteries.hostname
+        role.core
+      ];
+      nixos = {
+        imports = with inputs; [
+          home-manager.nixosModules.home-manager
+          stylix.nixosModules.stylix
+          sops-nix.nixosModules.sops
+          disko.nixosModules.disko
           {
-            serif = mkFont "DejaVu Serif" pkgs.dejavu_fonts;
-            sans = mkFont "DejaVu Sans" pkgs.dejavu_fonts;
-            mono = mkFont "FiraCode Nerd Font" pkgs.nerd-fonts.fira-code;
-            emoji = mkFont "Noto Color Emoji" pkgs.noto-fonts-color-emoji;
-          };
+            home-manager.sharedModules = [
+              nixvim.homeModules.nixvim
+              caelestia.homeManagerModules.default
+              sops-nix.homeManagerModules.sops
+            ];
+            home-manager.extraSpecialArgs = { inherit inputs; };
+          }
+        ];
+        system.stateVersion = stateVersion;
+      };
+      homeManager = {
+        home.stateVersion = stateVersion;
       };
     };
 
-  den.schema.host = { lib, ... }: with lib;
-    {
-      options = {
-        hardware = {
-          monitor = mkOption {
-            type = types.listOf types.str;
-          };
-          kbLayout = mkOption {
-            type = types.str;
-            default = "de";
-          };
-          isVirtual = mkEnableOption "Is virtual enviroment";
-          hasBattery = mkEnableOption "Device has battery";
-        };
-      };
-    };
-  den.aspects.core = { host, ... }: {
+  role.core = { host, ... }: {
     nixos =
       {
         lib,

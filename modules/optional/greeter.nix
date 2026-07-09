@@ -1,6 +1,5 @@
-{ den, ... }:
 {
-  den.aspects.greeter = {
+  role.greeter = {
     nixos =
       {
         lib,

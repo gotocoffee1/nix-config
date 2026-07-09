@@ -1,9 +1,9 @@
-{ den, ... }:
+{ role, ... }:
 {
-  den.aspects.desktop = {
+  role.desktop = {
     includes = [
-      den.aspects.bluetooth
-      den.aspects.printer_scanner
+      role.bluetooth
+      role.printer_scanner
     ];
     nixos = {
       services = {
@@ -14,6 +14,22 @@
       };
       # for pipewire
       security.rtkit.enable = true;
+
+      # TODO: check what is needed
+
+      # Bootloader.
+      boot.loader = {
+        systemd-boot.enable = true;
+        efi.canTouchEfiVariables = true;
+      };
+
+      # Allow unfree packages
+      nixpkgs.config.allowUnfree = true;
+
+      programs = {
+        nix-ld.enable = true;
+      };
+
     };
 
     provides.to-users.homeManager = {
@@ -23,10 +39,10 @@
       };
     };
   };
-  den.aspects.gui-desktop = {
+  role.gui-desktop = {
     includes = [
-      den.aspects.desktop
-      den.aspects.greeter
+      role.desktop
+      role.greeter
     ];
   };
 }

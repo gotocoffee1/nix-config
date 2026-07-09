@@ -1,5 +1,5 @@
 {
-  den,
+  role,
   gtc,
   ...
 }:
@@ -22,9 +22,7 @@
       ];
     };
     includes = [
-      den.aspects.common
-      den.aspects.core
-      den.aspects.gui-desktop
+      role.gui-desktop
     ];
     nixos = { lib, config, ... }: {
       imports = [
@@ -33,7 +31,7 @@
 
       networking.hostId = "a91287a0";
       boot.supportedFilesystems = [ "zfs" ];
-      boot.zfs.forceImportRoot = false;
+      boot.zfs.forceImportRoot = false; # remove next version
       boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
     };
   };

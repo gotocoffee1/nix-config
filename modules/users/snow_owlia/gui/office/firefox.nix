@@ -1,4 +1,4 @@
-{ den, so, ... }:
+{ role, so, ... }:
 {
   so.libreoffice = {
     homeManager =
@@ -16,7 +16,7 @@
   };
   so.firefox = {
     includes = [
-      den.aspects.firefox
+      role.firefox
     ];
     homeManager = {
       programs.firefox = {

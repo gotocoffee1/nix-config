@@ -1,5 +1,6 @@
 {
-  den,
+  role,
+  gtc,
   ...
 }:
 {
@@ -9,10 +10,13 @@
     };
   };
   den.aspects.coffee-bean = {
+    provides.gotocoffee = {
+      includes = [
+        gtc.desktop
+      ];
+    };
     includes = [
-      den.aspects.common
-      den.aspects.core
-      den.aspects.desktop
+      role.desktop
     ];
     nixos = {
       imports = [

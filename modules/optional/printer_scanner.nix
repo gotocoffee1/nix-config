@@ -1,6 +1,5 @@
-{ den, ... }:
 {
-  den.aspects.printer_scanner = {
+  role.printer_scanner = {
     nixos =
       { pkgs, ... }:
       {

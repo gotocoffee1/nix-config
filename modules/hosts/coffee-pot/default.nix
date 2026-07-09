@@ -1,5 +1,5 @@
 {
-  den,
+  role,
   gtc,
   so,
   ...
@@ -29,9 +29,7 @@
     ];
 
     includes = [
-      den.aspects.common
-      den.aspects.core
-      den.aspects.gui-desktop
+      role.gui-desktop
     ];
     nixos = {
       imports = [

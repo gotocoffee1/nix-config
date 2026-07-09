@@ -1,8 +1,8 @@
-{ den, ... }:
+{ role, ... }:
 {
   gtc.firefox = {
     includes = [
-      den.aspects.firefox
+      role.firefox
     ];
     homeManager = {
       programs.firefox = {

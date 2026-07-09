@@ -1,6 +1,5 @@
-{ den, ... }:
 {
-  den.aspects.bluetooth = {
+  role.bluetooth = {
     nixos = {
       hardware = {
         bluetooth = {

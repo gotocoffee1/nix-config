@@ -1,5 +1,5 @@
 {
-  den.aspects.firefox.homeManager =
+  role.firefox.homeManager =
     {
       pkgs,
       inputs,
