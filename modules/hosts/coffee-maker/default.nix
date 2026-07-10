@@ -24,7 +24,7 @@
     includes = [
       role.gui-desktop
     ];
-    nixos = { lib, config, ... }: {
+    nixos = { ... }: {
       imports = [
         ./_hardware-configuration.nix
       ];
