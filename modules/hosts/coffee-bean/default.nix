@@ -12,7 +12,7 @@
   den.aspects.coffee-bean = {
     provides.gotocoffee = {
       includes = [
-        gtc.desktop
+        gtc.headless-desktop
       ];
     };
     includes = [

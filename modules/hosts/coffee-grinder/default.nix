@@ -6,7 +6,7 @@
     };
   };
 
-  den.aspects.coffee-grinder = {
+  den.aspects.coffee-grinder = { user, ... }: {
     provides.gotocoffee = {
       includes = [
         gtc.devel
@@ -14,7 +14,7 @@
     };
     includes = [
     ];
-    nixos = {
+    nixos = { config, ... }: {
       virtualisation.vmVariant = {
         virtualisation = {
           memorySize = 8 * 1024;
@@ -31,8 +31,8 @@
           ];
           sharedDirectories = {
             devel = {
-              source = "/home/gotocoffee/Projects";
-              target = "/home/gotocoffee/Projects";
+              source = config.home-manager.users.${user.name}.xdg.userDirs.projects;
+              target = config.home-manager.users.${user.name}.xdg.userDirs.projects;
             };
           };
         };

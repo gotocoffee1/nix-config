@@ -14,10 +14,10 @@ server: (image "coffee-server" "sd-card")
 
 boot-image: (image "coffee-grounds" "raw-efi")
 
-vm:
-	nixos-rebuild --flake .#coffee-grinder build-vm
+vm HOST=`hostname`:
+	nixos-rebuild --flake .#{{ HOST }} build-vm
 
-run-vm: vm
+run-devel: (vm "coffee-grinder")
 	sleep 10 && kitty ssh vm &
 	./result/bin/run-coffee-grinder-vm
 

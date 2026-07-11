@@ -6,7 +6,7 @@
         openFirewall = true;
         settings =
           let
-            users = [ ];
+            users = lib.mapAttrsToList (name: value: value.userName) host.users;
             path = "/media/EXTERN_DISK/nas";
             mkShare =
               {

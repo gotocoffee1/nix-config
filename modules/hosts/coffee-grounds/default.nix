@@ -26,6 +26,7 @@
         "sd_mod"
         "sr_mod"
       ];
+      boot.kernelParams = [ "copytoram" ];
       security.sudo.wheelNeedsPassword = false;
       nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
     };

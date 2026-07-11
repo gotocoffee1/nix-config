@@ -1,5 +1,28 @@
-{ role, ... }:
+{ role, gtc, ... }:
 {
+  gtc.browsh = {
+    includes = [
+      gtc.firefox
+    ];
+    homeManager =
+      {
+        pkgs,
+        ...
+      }:
+      {
+        home.packages = with pkgs; [
+          browsh
+        ];
+        xdg.configFile."browsh/config.toml" = {
+          force = true;
+          text = ''
+            default_search_engine_base = "https://www.ecosia.org/search?method=index&q="
+            [firefox]
+            profile = "default"
+          '';
+        };
+      };
+  };
   gtc.firefox = {
     includes = [
       role.firefox

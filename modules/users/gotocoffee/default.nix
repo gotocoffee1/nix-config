@@ -55,6 +55,11 @@
     gtc.ssh-client
     gtc.music
   ];
+  gtc.headless-desktop.includes = [
+    gtc.desktop
+    gtc.browsh
+  ];
+
   gtc.gui-desktop.includes = [
     gtc.desktop
     gtc.gui-tools
