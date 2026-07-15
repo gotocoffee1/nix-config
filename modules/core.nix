@@ -15,7 +15,7 @@
         den.batteries.hostname
         role.core
       ];
-      nixos = {
+      nixos = { lib, ... }: {
         imports = with inputs; [
           home-manager.nixosModules.home-manager
           stylix.nixosModules.stylix
@@ -30,6 +30,20 @@
             home-manager.extraSpecialArgs = { inherit inputs; };
           }
         ];
+        virtualisation.vmVariant = {
+          virtualisation = lib.mkDefault {
+            memorySize = 8 * 1024;
+            diskSize = 100 * 1024;
+            cores = 4;
+            forwardPorts = [
+              {
+                from = "host";
+                host.port = 3333;
+                guest.port = 22;
+              }
+            ];
+          };
+        };
         system.stateVersion = stateVersion;
       };
       homeManager = {

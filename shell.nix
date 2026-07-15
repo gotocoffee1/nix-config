@@ -7,6 +7,7 @@ pkgs.mkShell {
     just
     nixfmt
     nixos-anywhere
+    disko
     sops
   ];
 }

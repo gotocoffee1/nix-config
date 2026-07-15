@@ -9,20 +9,22 @@ deploy HOST_CONFIG IP:
 image HOST TYPE: 
 	nixos-rebuild --image-variant {{ TYPE }} --flake .#{{ HOST }} build-image 
 
-server: (image "coffee-server" "sd-card")
-#sudo zstd -c -d result/sd-image/*.zst | dd bs=4M of=/dev/sda
-
-boot-image: (image "coffee-grounds" "raw-efi")
-
 vm HOST=`hostname`:
 	nixos-rebuild --flake .#{{ HOST }} build-vm
 
-run-devel: (vm "coffee-grinder")
-	sleep 10 && kitty ssh vm &
-	./result/bin/run-coffee-grinder-vm
+run-vm HOST=`hostname` SSH="vm": (vm HOST)
+	sleep 10 && kitty ssh {{ SSH }} &
+	./result/bin/run-{{ HOST }}-vm
 
 test HOST=`hostname`:
 	nixos-rebuild --flake .#{{ HOST }} dry-build
+#######
+server: (image "coffee-server" "sd-card")
+#sudo zstd -c -d result/sd-image/*.zst | dd bs=4M of=/dev/sda
+
+run-devel: (run-vm "coffee-grinder" "devel")
+
+boot-image: (image "coffee-grounds" "raw-efi")
 
 [parallel]
 test-all:                       \

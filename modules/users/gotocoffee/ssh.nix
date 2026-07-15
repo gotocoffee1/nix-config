@@ -7,10 +7,17 @@
       enable = true;
       enableDefaultConfig = false;
       settings = {
-        "vm" = {
+        "devel" = {
           hostname = "localhost";
           port = 2222;
           forwardAgent = true;
+          strictHostKeyChecking = "accept-new";
+          addKeysToAgent = "yes";
+        };
+        "vm" = {
+          hostname = "localhost";
+          port = 3333;
+          strictHostKeyChecking = "off";
           addKeysToAgent = "yes";
         };
         "*" = {
