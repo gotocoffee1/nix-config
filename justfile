@@ -3,8 +3,13 @@ default: build
 build HOST=`hostname`:
 	nixos-rebuild --sudo --ask-sudo-password --flake .#{{ HOST }} --target-host {{ HOST }} switch
 
-deploy HOST_CONFIG IP:
-	nixos-anywhere --flake .#{{ HOST_CONFIG }} --extra-files extra_root --chown /home/gotocoffee 1000:100 --chown /home/snow_owlia 1001:100 --target-host {{ IP }}
+set unstable
+user(HOST, MAP) := shell(f'nix eval --raw .#nixosConfigurations.{{ HOST }}.config.users.users --apply "(u: builtins.concatStringsSep \" \" (builtins.map ({{ MAP }}) (builtins.filter (x: x.isNormalUser) (builtins.attrValues u))))"')
+
+deploy HOST IP:
+	./modules/extra/files.sh {{ user(HOST, 'x: x.name') }}
+	nixos-anywhere --flake .#{{ HOST }} --extra-files extra_root {{ user(HOST, 'x: \"--chown \${x.home} \${toString(x.uid)}:100\"') }} --target-host {{ IP }}
+	rm -rf extra_root
 
 image HOST TYPE: 
 	nixos-rebuild --image-variant {{ TYPE }} --flake .#{{ HOST }} build-image 
