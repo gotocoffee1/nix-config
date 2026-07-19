@@ -15,11 +15,6 @@
           openssh.authorizedKeys.keyFiles = [ ../../users/gotocoffee/keys/id_ed25519.pub ];
         };
         users.groups.git = { };
-        services.cgit."default" = {
-          enable = true;
-          gitHttpBackend.enable = false;
-          scanPath = path;
-        };
         services.openssh = {
           enable = true;
           extraConfig = ''
@@ -30,6 +25,15 @@
               PermitTTY no
               X11Forwarding no
           '';
+        };
+        services.cgit."default" = {
+          enable = true;
+          gitHttpBackend.enable = false;
+          scanPath = path;
+          nginx.virtualHost = "git.*";
+        };
+        services.nginx = {
+          enable = true;
         };
       };
   };

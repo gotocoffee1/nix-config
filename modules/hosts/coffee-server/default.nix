@@ -15,13 +15,19 @@
         gtc.server
       ];
     };
+    provides.snow_owlia = {
+      includes = [
+      ];
+    };
     includes = [
       role.pihole
       role.nas
       role.mealie
       role.git
+      # Maybe https://github.com/denful/den/issues/473
+      role.nas-user
     ];
-    nixos = {
+    nixos = { pkgs, ... }: {
       imports = [
         ./_hardware-configuration.nix
       ];
@@ -32,6 +38,13 @@
         };
       };
       security.sudo.wheelNeedsPassword = false;
+      environment.variables.PATH = [
+        "${pkgs.openssh}/libexec"
+      ];
+      networking.firewall.allowedTCPPorts = [
+        80
+        443
+      ];
     };
   };
 }
